@@ -65,7 +65,6 @@ sudo apt-get install python-simplejson
 
 ### 4. Tests
 - B2SAFE installation
- As irods user execute
 ```sh
 cd ~/B2SAFE-core/rules
 irule -vF eudatGetV.r
