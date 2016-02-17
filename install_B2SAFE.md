@@ -85,6 +85,9 @@ iput -r testData/
 ils
 ```
 * Edit B2SAFE-core/rules/eudatPidsColl.r, adjust coll_path with /\<irodszone\>/home/\<user\>/testData
+```sh
+irule -vF B2SAFE-core/rules/eudatPidsColl.r
+```
 * Output should look like this
 ```sh
 *newPID = <prefix>/<somecrypticstring>
