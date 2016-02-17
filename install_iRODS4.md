@@ -1,17 +1,18 @@
 # Installation of iRODS 4.1
+This document describes how to install iRODS4.1 on a Ubuntu machine with a postgresql database as iCAT. 
 
 ## Environment
 Ubuntu 14.04 server
-### 1. update and upgrade if necessary
+### 1. Update and upgrade if necessary
 ```sh
 apt-get update
 apt-get upgrade
 ```
-### 2. set firewall
+### 2. Set firewall
 ```sh
 sudo apt-get install iptables-persistent
 ```
-edit /etc/iptables/rules.v4
+- edit /etc/iptables/rules.v4
 ```sh
 *filter
 :INPUT ACCEPT [0:0]
@@ -36,14 +37,24 @@ edit /etc/iptables/rules.v4
 -A INPUT -j DROP
 COMMIT
 ```
+- edit /etc/iptables/rules.v4
+```sh
+*filter
+:INPUT ACCEPT [0:0]
+:FORWARD ACCEPT [0:0]
+:OUTPUT ACCEPT [0:0]
+-A INPUT -j DROP
+COMMIT 
+```
 
 ```sh
 /etc/init.d/iptables-persistent start
 ```
 
-
-### 3. create admin user for machine and irods
-
+### 3. Create admin user for machine and irods
+```sh
+adduser irodsadmin
+```
 ### (Optional) 
 To change the user name (useful when working with VM templates)
 ```sh
@@ -54,4 +65,5 @@ usermod -c newuser newuser
 ```
 Add newuser to sudoers
 
+### 4. Install postgresql
 
