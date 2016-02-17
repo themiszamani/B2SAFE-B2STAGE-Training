@@ -115,7 +115,7 @@ sudo apt-get -f install
 ### 8. Configuring iRODS
 - First we create the irods vault (where data put into iRODS will be physically stored).
 ```sh
-sudo mkdir /irodsVault/ 
+sudo mkdir /irodsVault 
 sudo chmod 777 /irodsVault
 ```
 
