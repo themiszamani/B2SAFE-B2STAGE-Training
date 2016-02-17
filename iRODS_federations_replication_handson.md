@@ -15,5 +15,5 @@ Assume we have to iRODS servers aliceZone with alice as irodsadmin and bobZone w
 ## Testing the federation
 
 ## B2SAFE data transfer workflow (Using B2SAFE)
-![Using B2SAFE](B2SAFE_using.pnG)
+![Using B2SAFE](B2SAFE_using.png)
  
