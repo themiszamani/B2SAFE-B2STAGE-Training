@@ -40,9 +40,21 @@ sudo su - $IRODS_SERVICE_ACCOUNT_NAME -s "/bin/bash" -c "cd /opt/eudat/b2safe/pa
 ```
 
 ### 3. Python dependencies
+- Check dependencies
+```sh
+cd /opt/eudat/b2safe/cmd
+./authZmanager.py -h
+./epicclient.py --help
+./logmanager.py -h
+./messageManager.py -h
+./metadataManager.py -h
+```
+
+- Known dependencies
 ```sh
 sudo apt-get install python-pip
 sudo pip install queuelib
+sudo pip install dweepy
 
 sudo apt-get install python-lxml
 sudo apt-get install python-defusedxml
@@ -63,4 +75,18 @@ irule -vF eudatGetV.r
 *version = 3.1-0
 ```
 
-
+- Generating PIDs
+* Create a test collection
+```sh
+mkdir testData
+#save som,e file with content in testData
+vim testData/testfile.txt
+# ingest collection into iRODS
+iput -r testData/
+ils
+```
+* Edit B2SAFE-core/rules/eudatPidsColl.r, adjust *coll_path with /<irodszone>/home/<user>/testData
+* Output should look like this
+```sh
+*newPID = <prefix>/<somecrypticstring>
+``` 
