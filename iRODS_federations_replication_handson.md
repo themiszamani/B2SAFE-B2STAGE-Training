@@ -13,7 +13,7 @@ Assume we have to iRODS servers aliceZone with alice as irodsadmin and bobZone w
 ```sh
 iadmin mkzone bobZone remote <full hostname or ipadress>:1247
 ```
-Note that you cannot rename bobZone, it needs to be exactly the same zone name than on the iRODS server you would like to federate with.
+Note that you cannot rename bobZone, it needs to be exactly the same zone name on the iRODS server you would like to federate with.
 * on bobZone do
 ```sh
 iadmin mkzone aliceZone remote <full hostname or ipadress>:1247
@@ -28,7 +28,7 @@ The '#' denotes the zone where the user 'alice' is known and authenticated.
 ```sh
 iadmin lt user_type
 ```
-you can check which other user types are knoen in iRODS.
+you can check which other user types are known in iRODS.
 
 - Same for bob on aliceZone
 ```sh
