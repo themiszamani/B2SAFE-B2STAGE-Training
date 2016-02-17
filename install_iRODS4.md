@@ -2,12 +2,12 @@
 
 ## Environment
 Ubuntu 14.04 server
-1. update and upgrade if necessary
+### 1. update and upgrade if necessary
 ```sh
 apt-get update
 apt-get upgrade
 ```
-2. set firewall
+### 2. set firewall
 ```sh
 sudo apt-get install iptables-persistent
 ```
@@ -42,8 +42,9 @@ COMMIT
 ```
 
 
-3. create admin user for machine and irods
+### 3. create admin user for machine and irods
 
+### (Optional) 
 To change the user name (useful when working with VM templates)
 ```sh
 usermod -l newuser irodsadmin 
