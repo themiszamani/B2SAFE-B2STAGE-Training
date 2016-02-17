@@ -19,7 +19,7 @@ sudo apt-get install git
 ```sh
 git clone https://github.com/EUDAT-B2SAFE/B2SAFE-core
 git clone https://github.com/chStaiger/B2SAFE-core.git
-cd /var/lib/irods/B2SAFE-core/packaging
+cd ~/B2SAFE-core/packaging
 ./create_deb_package.sh
 ```
 - Install the created package as *root*
