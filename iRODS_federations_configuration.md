@@ -106,8 +106,5 @@ bob@irods4:~$ ils /aliceZone/home/bob#bobZone
 /aliceZone/home/bob#bobZone:
 ```
 
-## Moving files between irods zones (Testing the federation)
-
-## B2SAFE data transfer workflow (Using B2SAFE)
-![Using B2SAFE](B2SAFE_using.png)
- 
+We explain [HERE](https://github.com/chStaiger/B2SAFE-B2STAGE-Training/blob/master/iRODS_federations_handson.md) the basics of how you can manage data across iRODS zones.
+In our [B2SAFE-HANDS-ON](https://github.com/chStaiger/B2SAFE-B2STAGE-Training/blob/master/B2SAFE_handson.md) we illustrate how to employ policies for data management in iRODS federations. 
