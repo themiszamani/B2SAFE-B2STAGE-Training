@@ -3,6 +3,7 @@ This document describes how to install B2SAFE 2 with iRODS4.1 on a Ubunutu 14.04
 
 ## Environment
 Ubuntu 14.04 server, iRODS 4.1 with postgresql 9.3
+You will also need a handle prefix and the respective credentials to configure B2SAFE.
 
 ##Prerequisites
 Also consult https://github.com/EUDAT-B2SAFE/B2SAFE-core/blob/master/install.txt
