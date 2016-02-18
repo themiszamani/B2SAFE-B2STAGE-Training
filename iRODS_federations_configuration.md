@@ -1,5 +1,5 @@
 # Setting up an iRODS federation and replicate data with B2SAFE
-This hands-on takes you through the configuration steps necessary to set up an iRODS federation. Subsequently, we illustrate how to use the B2SAFE rules to register data and replicate this data to another iRODS zone.
+This hands-on takes you through the configuration steps necessary to set up an iRODS federation.
 
 ## Prerequisites
 Two iRODS 4.1 zones enabled with B2SAFE 2.
