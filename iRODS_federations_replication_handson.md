@@ -7,6 +7,7 @@ Please refer to [B2SAFE](https://github.com/chStaiger/B2SAFE-B2STAGE-Training/bl
  and [iRODS4](https://github.com/chStaiger/B2SAFE-B2STAGE-Training/blob/master/install_iRODS4.md)
 
 ## Configuring the iRODS federation
+### Creating remote zones and users
 Assume we have to iRODS servers aliceZone with alice as irodsadmin and bobZone with bob as irodsadmin.
 - We need to create remote zones on the respective machines, i.e. on aliceZone we need to create a remote zone for bobZone and vice versa.
 * on aliceZone do
@@ -40,8 +41,8 @@ bob@irods4:~$ ils /aliceZone
 ERROR: rcObjStat of /aliceZone failed status = -913000 REMOTE_SERVER_SID_NOT_DEFINED
 ```
 
-- Editing the config files
-* To make both sites known to each other and to authenticate we need to edit the field 'federations' in /etc/irods/server_config.json
+### Editing the config files
+- To make both sites known to each other and to authenticate we need to edit the field 'federations' in /etc/irods/server_config.json
 On boZone insert:
 ```sh
 "federation": [
@@ -65,10 +66,10 @@ On aliceZone insert:
 ]
 ```
 
-* In some cases you will also have edit the /etc/irods/hosts_config.json
+- In some cases you will also have edit the /etc/irods/hosts_config.json
 This is the case if you encounter the following error after editing the server_config.json you will have to go through another step.
 ```sh
-bob@irods4:~$ ils /alicetestZone
+bob@irods4:~$ ils /aliceZone/home/bob#bobZone
 ERROR: connectToRhost: error returned from host localhost status = -38000 status = -38000 SYS_AGENT_INIT_ERR
 ERROR: _rcConnect: connectToRhost error, server on localhost:1247 is probably down status = -38000 SYS_AGENT_INIT_ERR
 ```
@@ -108,7 +109,7 @@ bob@irods4:~$ ils /aliceZone/home/bob#bobZone
 /aliceZone/home/bob#bobZone:
 ```
 
-## Testing the federation
+## Moving files between irods zones (Testing the federation)
 
 ## B2SAFE data transfer workflow (Using B2SAFE)
 ![Using B2SAFE](B2SAFE_using.png)
