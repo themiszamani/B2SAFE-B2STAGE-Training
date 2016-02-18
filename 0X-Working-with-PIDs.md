@@ -130,8 +130,8 @@ ec.modifyHandle(Handle, "URL",
 We updated the "URL" with a local path on a personal machine. That means you can no longer download the data
 directly, but you have access to the data stored in the PID.
 
---> information stored with the PID is ALWAYS public
---> data itself can lie on a protected server/computer and not be accessible
+* information stored with the PID is ALWAYS public
+* data itself can lie on a protected server/computer and not be accessible
 for everyone
 
 ## Linking two files
