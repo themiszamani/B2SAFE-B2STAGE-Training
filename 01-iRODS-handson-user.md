@@ -259,7 +259,7 @@ For more sophisticated sql-like queries we can use
 ```sh
 iquest "select sum(DATA_SIZE), COLL_NAME where COLL_NAME like '/alicetestZone/home/alice/Data%'"
 ```
-This command sums the sizes of all data in each collection startingwith *Data*. The command *iquest* already knows some keywords specific to the iRODS environment. You can list them with
+This command sums the sizes of all data in each collection starting with *Data*. The command *iquest* already knows some keywords specific to the iRODS environment. You can list them with
 
 ```sh
 iquest attrs
