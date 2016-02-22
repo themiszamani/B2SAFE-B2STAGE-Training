@@ -77,7 +77,7 @@ Enter the full PID string and tick the box *do not redirect to URLs*. This will 
 
 
 1. Copy the user's data to location und B2SAFE administrator home collection
-```sh
+..```sh
 icp -r /aliceZone/home/<irodsuser>/DataCollection /aliceZone/home/b2safe/
 ```
 
