@@ -84,7 +84,6 @@ Enter the full PID string and tick the box *do not redirect to URLs*. This will 
 
 Save the following file as testRules/eudatPidsColl.r and replace the bold text with the respective user and collection name.
         
-        ```sh
         eudatPidsColl{
             # Create PIDs for all collections and objects in the collection recursively
             # ROR is assumed to be "None"
@@ -92,17 +91,13 @@ Save the following file as testRules/eudatPidsColl.r and replace the bold text w
         }
         INPUT *coll_path='/aliceZone/home/<**b2safe**>/<**collection**>'
         OUTPUT ruleExecOut
-        ```
 
 We see that here there is no output of the newly generated PIDs. However, we can retrieve this information by querying the iCAT catalogue.
 
-        ```sh
         imeta ls -d DataCollection/put1.txt
-        ```
 
 This will return:
 
-        ```sh
         attribute: eudat_dpm_checksum_date:demoResc
         value: 01455887784
         units:
@@ -110,7 +105,6 @@ This will return:
         attribute: PID
         value: 846/6e67a674-d98a-11e5-b634-04040a64000c
         units:
-        ```
 
 **Exercise**: Write a script or an iRODS rule to retrieve all PIDs of a data collection.
 
@@ -120,7 +114,6 @@ The B2SAFE admin also has access to bobZone via an iRODS federation. We will now
 Merely transferring the data could also be done by the icommand *irepl*. However, we would like to 1) calculate checksums, create PIDs and link the replicas' PIDs with their parent counterparts. This is all already implemented by B2SAFE rules.
 Create the file testRules/Replication.r with the following content:
         
-        ```sh
         Replication {
             *registered=bool("true");
             *recursive=bool("true");
@@ -130,7 +123,6 @@ Create the file testRules/Replication.r with the following content:
         }
         INPUT *source="/aliceZone/home/<**b2safe**>/<**collection**>",*destination="/bobZone/home/<**b2safe**>#aliceZone/<**collection**>"
         OUTPUT ruleExecOut
-        ```
 
 Now let's have a closer look at the PID entries of the parent data on aliceZone. The resolver will show you some information like that:
 
