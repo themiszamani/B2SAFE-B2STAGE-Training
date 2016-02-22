@@ -120,6 +120,7 @@ This will return:
 The B2SAFE admin also has access to bobZone via an iRODS federation. We will now transfer the data collection to this zone. 
 Merely transferring the data could also be done by the icommand *irepl*. However, we would like to 1) calculate checksums, create PIDs and link the replicas' PIDs with their parent counterparts. This is all already implemented by B2SAFE rules.
 Create the file testRules/Replication.r with the following content:
+        
         ```sh
         Replication {
             *registered=bool("true");
@@ -131,7 +132,9 @@ Create the file testRules/Replication.r with the following content:
         INPUT *source="/aliceZone/home/<**b2safe**>/<**collection**>",*destination="/bobZone/home/<**b2safe**>#aliceZone/<**collection**>"
         OUTPUT ruleExecOut
         ```
+
 Now let's have a closer look at the PID entries of the parent data on aliceZone. The resolver will show you some information like that:
+
 Index |  Type |   Timestamp |  Data
 ------|--------|--------------|--------
 1 |  URL| 2016-02-22 17:33:49Z |   irods://145.100.58.12:1247/aliceZone/home/alice/DataCollection/put1.txt
