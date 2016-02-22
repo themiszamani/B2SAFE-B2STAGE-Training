@@ -144,7 +144,7 @@ Index |  Type |   Timestamp |  Data
 
 The replica contains two extra fields. *EUDAT/ROR* indicates the original file in the repository of resources. *EUDAT/PPID* contains the PID to the direct parent. The ROR-etntry is important to verify that the replica is indeed the same as the ROR, which has to be done by integrity checks. Every replica, also a replica of a replica, will inherit this entry. The PPID entry is important to build the linked list of replicas in case replicas are further replicated to other sites.
 
-*** Retrieve the PIDs of the replicas
+### Retrieve the PIDs of the replicas
 Option 1)
 As B2SAFE admin you have access to the PIDs of the parent PID in your iCAT catalogue. 
 **Exercise** If you already followed the [PID tutorial](https://github.com/chStaiger/B2SAFE-B2STAGE-Training/blob/master/0X-Working-with-PIDs_epicclient.md) write a script to fetch all PIDs of the replicas and check whether original and replica indeed have the same checksum
