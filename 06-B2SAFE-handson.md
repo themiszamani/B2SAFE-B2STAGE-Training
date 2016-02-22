@@ -80,19 +80,18 @@ Enter the full PID string and tick the box *do not redirect to URLs*. This will 
 
         icp -r /aliceZone/home/<irodsuser>/DataCollection /aliceZone/home/b2safe/
 
-2. Register all files in the collection using *EUDATPidsForColl*. Save the following file as testRules/eudatPidsColl.r and replace the bold text with the respective user and collection name.
+2. Register all files in the collection using *EUDATPidsForColl*. Save the following file as testRules/eudatPidsColl.r and replace the user and collection name with your respective user and collection name.
         
         eudatPidsColl{
             # Create PIDs for all collections and objects in the collection recursively
             # ROR is assumed to be "None"
             EUDATPidsForColl(*coll_path);
         }
-        INPUT *coll_path='/aliceZone/home/<**b2safe**>/<**collection**>'
+        INPUT *coll_path='/aliceZone/home/<b2safe>/<collection>'
         OUTPUT ruleExecOut
 We see that here there is no output of the newly generated PIDs. However, we can retrieve this information by querying the iCAT catalogue.
 
         imeta ls -d DataCollection/put1.txt
-
 This will return:
 
         attribute: eudat_dpm_checksum_date:demoResc
@@ -102,12 +101,9 @@ This will return:
         attribute: PID
         value: 846/6e67a674-d98a-11e5-b634-04040a64000c
         units:
-
 **Exercise**: Write a script or an iRODS rule to retrieve all PIDs of a data collection.
 
-3. Replicate the data collection from aliceZone to bobZone
-
-The B2SAFE admin also has access to bobZone via an iRODS federation. We will now transfer the data collection to this zone. 
+3. Replicate the data collection from aliceZone to bobZone. The B2SAFE admin also has access to bobZone via an iRODS federation. We will now transfer the data collection to this zone. 
 Merely transferring the data could also be done by the icommand *irepl*. However, we would like to 1) calculate checksums, create PIDs and link the replicas' PIDs with their parent counterparts. This is all already implemented by B2SAFE rules.
 Create the file testRules/Replication.r with the following content:
         
@@ -118,15 +114,14 @@ Create the file testRules/Replication.r with the following content:
             if (*status) {writeLine("stdout", "Success!");}
             else {writeLine("stdout", "Failed: *response");}
         }
-        INPUT *source="/aliceZone/home/<**b2safe**>/<**collection**>",*destination="/bobZone/home/<**b2safe**>#aliceZone/<**collection**>"
+        INPUT *source="/aliceZone/home/<b2safe>/<collection>",*destination="/bobZone/home/<b2safe>#aliceZone/<collection>"
         OUTPUT ruleExecOut
-
 Now let's have a closer look at the PID entries of the parent data on aliceZone. The resolver will show you some information like that:
 
 Index |  Type |   Timestamp |  Data
 ------|--------|--------------|--------
 1 |  URL| 2016-02-22 17:33:49Z |   irods://145.100.58.12:1247/aliceZone/home/alice/DataCollection/put1.txt
-2 |  10320/LOC |  2016-02-22 17:46:04Z |   <locations><location href="irods://145.100.58.12:1247/aliceZone/home/alice/DataCollection/put1.txt" id="0"/><location href="http://hdl.handle.net/841/244bb240-d98c-11e5-aa5b-04040a640018" id="1"/></locations>
+2 |  10320/LOC |  2016-02-22 17:46:04Z |   \<locations\>\<location href="irods://145.100.58.12:1247/aliceZone/home/alice/DataCollection/put1.txt" id="0"/\>\<location href="http://hdl.handle.net/841/244bb240-d98c-11e5-aa5b-04040a640018" id="1"/\>\</locations>
 3 |  CHECKSUM  |  2016-02-22 17:33:49Z |   d6eb32081c822ed572b70567826d9d9d
 
 The *100/LOC* of the parent file has been extended with the PID of it's replica.
@@ -136,7 +131,7 @@ Let's have a look at the content of the replica's PID
 Index |  Type |   Timestamp |  Data
 ------|--------|--------------|--------
 1 |  URL | 2016-02-22 17:46:04Z  |  irods://145.100.58.24:1247/bobZone/home/alice#aliceZone/DataCollection/put1.txt
-2 |  10320/LOC   2016-02-22 17:46:04Z    <locations><location href="irods://145.100.58.24:1247/bobZone/home/alice#aliceZone/DataCollection/put1.txt" id="0"/></locations>
+2 |  10320/LOC |  2016-02-22 17:46:04Z |   \<locations\>\<location href="irods://145.100.58.24:1247/bobZone/home/alice#aliceZone/DataCollection/put1.txt" id="0"/\>\</locations\>
 3 |  CHECKSUM  |  2016-02-22 17:46:04Z |   d6eb32081c822ed572b70567826d9d9d
 4 |  EUDAT/ROR |  2016-02-22 17:46:04Z  |  846/6e67a674-d98a-11e5-b634-04040a64000c
 5 |  EUDAT/PPID |  2016-02-22 17:46:04Z  |  846/6e67a674-d98a-11e5-b634-04040a64000c
