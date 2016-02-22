@@ -78,9 +78,7 @@ Enter the full PID string and tick the box *do not redirect to URLs*. This will 
 
 1. Copy the user's data to location und B2SAFE administrator home collection
 
-        ```sh
         icp -r /aliceZone/home/<irodsuser>/DataCollection /aliceZone/home/b2safe/
-        ```
 
 2. Register all files in the collection using *EUDATPidsForColl*
 
@@ -95,6 +93,7 @@ Save the following file as testRules/eudatPidsColl.r and replace the bold text w
         INPUT *coll_path='/aliceZone/home/<**b2safe**>/<**collection**>'
         OUTPUT ruleExecOut
         ```
+
 We see that here there is no output of the newly generated PIDs. However, we can retrieve this information by querying the iCAT catalogue.
 
         ```sh
