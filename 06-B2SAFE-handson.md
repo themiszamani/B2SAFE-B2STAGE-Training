@@ -76,7 +76,7 @@ Enter the full PID string and tick the box *do not redirect to URLs*. This will 
 ### B2SAFE Replication workflow
 
 
-1. Copy users data to location und B2SAFE administrator home collection
+1. Copy the user's data to location und B2SAFE administrator home collection
 ```sh
 icp -r /aliceZone/home/<irodsuser>/DataCollection /aliceZone/home/b2safe/
 ```
@@ -92,11 +92,15 @@ eudatPidsColl{
 INPUT *coll_path='/aliceZone/home/<**b2safe**>/<**collection**>'
 OUTPUT ruleExecOut
 ```
+
 We see that here there is no output of the newly generated PIDs. However, we can retrieve this information by querying the iCAT catalogue.
+
 ```sh
 imeta ls -d DataCollection/put1.txt
 ```
+
 This will return:
+
 ```sh
 attribute: eudat_dpm_checksum_date:demoResc
 value: 01455887784
@@ -106,7 +110,8 @@ attribute: PID
 value: 846/6e67a674-d98a-11e5-b634-04040a64000c
 units:
 ```
-*Exercise*: Write a script or an iRODS rule to retrieve all PIDs of a data collection.
+
+**Exercise**: Write a script or an iRODS rule to retrieve all PIDs of a data collection.
 
 3. Replicate Dthe data collection from aliceZone to bobZone
 The B2SAFE admin also has access to bobZone via an iRODS federation. We will now transfer the data collection to this zone. 
@@ -142,18 +147,27 @@ Index |  Type |   Timestamp |  Data
 4 |  EUDAT/ROR |  2016-02-22 17:46:04Z  |  846/6e67a674-d98a-11e5-b634-04040a64000c
 5 |  EUDAT/PPID |  2016-02-22 17:46:04Z  |  846/6e67a674-d98a-11e5-b634-04040a64000c
 
-The replica contains two extra fields. *EUDAT/ROR* indicates the original file in the repository of resources. *EUDAT/PPID* contains the PID to the direct parent. The ROR-etntry is important to verify that the replica is indeed the same as the ROR, which has to be done by integrity checks. Every replica, also a replica of a replica, will inherit this entry. The PPID entry is important to build the linked list of replicas in case replicas are further replicated to other sites.
+The replica contains two extra fields. 
+*EUDAT/ROR* indicates the original file in the repository of resources. 
+*EUDAT/PPID* contains the PID to the direct parent. 
+
+The ROR-entry is important to verify that the replica is indeed the same as the ROR, which has to be done by integrity checks. Every replica, also a replica of a replica, will inherit this entry. The PPID entry is important to build the linked list of replicas in case replicas are further replicated to other sites.
 
 ### Retrieve the PIDs of the replicas
 Option 1)
+
 As B2SAFE admin you have access to the PIDs of the parent PID in your iCAT catalogue. 
+
 **Exercise** If you already followed the [PID tutorial](https://github.com/chStaiger/B2SAFE-B2STAGE-Training/blob/master/0X-Working-with-PIDs_epicclient.md) write a script to fetch all PIDs of the replicas and check whether original and replica indeed have the same checksum
 
 Option 2)
+
 **Exercise** Same as in Option 1) but use the information the two iCAT catalogues and the function *ichksum*. Tip: you can access the data and the iCAT of bobZone like this:
+
 ```sh
 ils -L /bobZone/home/alice#aliceZone/DataCollection
 imeta ls -d /bobZone/home/alice#aliceZone/DataCollection/put1.txt
 ```
+
 **Exercise** Replicate the data from bobZone in a different collection in aliceZone, inspect the PID entries and write a script to communicate the whole linked list of PIDs to your irods useri, e.g. as a text file.
 
