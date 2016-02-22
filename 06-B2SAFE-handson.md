@@ -9,7 +9,7 @@ The tutorial makes use of the icammands. If you did not so then please first fol
 The tutorial will guide you through Step2 in the figure below.
 As B2SAFE admin you will copy data from a user, which he/she ingested into the iRODS instance, to another location in iRODS. You will register the data and by that buil the so-called repository of records and replicate the collection to another iRODS server using the B2SAFE rules.
 
-![Using B2SAFE](B2SAFE_using.png =250x)
+![Using B2SAFE](B2SAFE_using.png {width=40px height=400px})
 
 ### Prerequisites
 - Installation of the icommands
