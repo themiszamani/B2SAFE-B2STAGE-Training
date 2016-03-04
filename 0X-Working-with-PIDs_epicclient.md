@@ -195,7 +195,7 @@ ec.modifyHandle(Handle, 'MD5', md5sum)
 - Assume location of file has changed. This means we need to modify the URL field.
 
 ```py
-ec.modifyHandle(Handle, 'URL', '<PATH>/surveys.csv')
+ec.modifyHandle(Handle, 'URL', '/<PATH>/surveys.csv')
 ```
 
 **Try to fetch some metadata on the file from the resolver.**
