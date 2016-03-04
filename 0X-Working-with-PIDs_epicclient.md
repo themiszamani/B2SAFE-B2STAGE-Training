@@ -110,11 +110,11 @@ cred.parse()
 - Retrieve some information about the server, this server also hosts the resolver which we will use later
 ```py
 ec = EpicClient(cred)
-print 'PID server', ec.cred.baseuri
+print('PID server ' + ec.cred.baseuri)
 ```
 - The PID prefix is your user name which is coupled to an administratory domain
 ```py
-print 'PID prefix', ec.cred.prefix
+print('PID prefix' + ec.cred.prefix)
 ```
 
 ## Registering a file
@@ -234,11 +234,13 @@ ec.modifyHandle(Handle, 'Same_as', newHandle)
 ```
 
 ### Recursive look-ups
-The epic API extends the handle API with recursive look-ups. Assume you just know some of the metadata stored with a PID but not the fulle PID. How can you get to the URL field to retrieve the data?
+The epic API extends the handle API with recursive look-ups. Assume you just know some of the metadata stored with a PID but not the full PID. How can you get to the URL field to retrieve the data?
 
 We can fetch the first data with a certain checksum:
 ```py
-searchHandle(cred.prefix, 'MD5', md5sum)
+Handle = ec.searchHandle(cred.prefix, 'MD5', md5sum)
+url = ec.getValueFromHandle(Handle, 'URL')
+print(url) 
 ```
 
 ### Using the epicclient Command Line Interface (CLI)
