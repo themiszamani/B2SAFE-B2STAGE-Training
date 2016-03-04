@@ -110,18 +110,18 @@ cred.parse()
 - Retrieve some information about the server, this server also hosts the resolver which we will use later
 ```py
 ec = EpicClient(cred)
-print "PID server", ec.cred.baseuri
+print 'PID server', ec.cred.baseuri
 ```
 - The PID prefix is your user name which is coupled to an administratory domain
 ```py
-print "PID prefix", ec.cred.prefix
+print 'PID prefix', ec.cred.prefix
 ```
 
 ## Registering a file
 ### We will register a public file from figshare. 
 First store the file location.
 ```py
-fileLocation = "https://ndownloader.figshare.com/files/2292172"
+fileLocation = 'https://ndownloader.figshare.com/files/2292172'
 ```
 
 ### Building the PID:
@@ -136,7 +136,7 @@ print(type(uid))
 
 - Concatenate your PID prefix and the uuid to create the full PID
 ```py
-pid = cred.prefix+'/'+str(uid)
+pid = cred.prefix + '/' + str(uid)
 print(pid)
 ```
 
@@ -170,8 +170,7 @@ newHandle = ec.createHandle(pid, fileLocation)
 - We can store some more information in the PID entry with the function *modifyHandle*
 ```py
 ?ec.modifyHandle
-ec.modifyHandle(Handle, "TYPE", 
-    "Data Carpentry pandas example file")
+ec.modifyHandle(Handle, 'TYPE', 'Data Carpentry pandas example file')
 ```
 
 - We want to store information on identity of the file, e.g. the md5 checksum. We first have 
@@ -183,9 +182,8 @@ then continue to calculate the checksum.
 
 ```py
 import hashlib
-md5sum = hashlib.md5(
-    "surveys.csv").hexdigest()
-ec.modifyHandle(Handle, "MD5", md5sum)
+md5sum = hashlib.md5('surveys.csv').hexdigest()
+ec.modifyHandle(Handle, 'MD5', md5sum)
 ```
 
 - With the resolver we can access this information. Note, this data is publicly available to anyone.
@@ -199,8 +197,7 @@ ec.modifyHandle(Handle, "MD5", md5sum)
 - Assume location of file has changed. This means we need to modify the URL field.
 
 ```py
-ec.modifyHandle(Handle, "URL", 
-    "<PATH>/surveys.csv")
+ec.modifyHandle(Handle, 'URL', '<PATH>/surveys.csv')
 ```
 
 **Try to fetch some metadata on the file from the resolver.**
@@ -222,7 +219,7 @@ in the PIDs.
 ```py
 uid = uuid.uuid1()
 print(uid)
-pid = cred.prefix+'/'+str(uid)
+pid = cred.prefix + '/' + str(uid)
 ```
 searchHandle(self, prefix, key, value)
 
@@ -235,7 +232,7 @@ newHandle = ec.createHandle(pid, fileLocation)
 - Leave information that local file should be the same as the figshare file
 
 ```py
-ec.modifyHandle(Handle, "Same_as", newHandle)
+ec.modifyHandle(Handle, 'Same_as', newHandle)
 ```
 
 ### Recursive look-ups
@@ -243,7 +240,7 @@ The epic API extends the handle API with recursive look-ups. Assume you just kno
 
 We can fetch the first data with a certain checksum:
 ```py
-searchHandle(self, cred.prefix, "MD5", md5sum)
+searchHandle(cred.prefix, 'MD5', md5sum)
 ```
 
 ### Using the epicclient Command Line Interface (CLI)
