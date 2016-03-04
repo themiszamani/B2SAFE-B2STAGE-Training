@@ -104,7 +104,7 @@ On the test machines you can find such a file in */opt/PIDs*.
 
 - Parse credentials (username, password)
 ```py
-cred = Credentials('os', '/path/to/credentials')
+cred = Credentials('os', '/<path>/credentials')
 cred.parse()
 ```
 - Retrieve some information about the server, this server also hosts the resolver which we will use later
@@ -176,9 +176,7 @@ ec.modifyHandle(Handle, 'TYPE', 'Data Carpentry pandas example file')
 - We want to store information on identity of the file, e.g. the md5 checksum. We first have 
 to generate the checksum. However, we can only create checksums for files which we 
 have access to with our python compiler. In the step above we can download the file and
-then continue to calculate the checksum.
-
-**NOTE** the filename might depend on the download method.
+then continue to calculate the checksum. **NOTE** the filename might depend on the download method.
 
 ```py
 import hashlib
