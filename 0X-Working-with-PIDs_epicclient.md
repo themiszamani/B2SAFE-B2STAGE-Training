@@ -29,19 +29,19 @@ easy_install defusedxml
 Below  you find three different PIDs and their corresponding global resolver
 
 - Handle 
-PID: 11304/cf8956a2-39d3-11e5-8a18-f31aa6f4d448
+    PID: 11304/cf8956a2-39d3-11e5-8a18-f31aa6f4d448
 
-Resolver: http://hdl.handle.net/
+    Resolver: http://hdl.handle.net/
 
 - Doi
-PID: 10.3389/fgene.2013.00289
+    PID: 10.3389/fgene.2013.00289
 
-Resolver: http://dx.doi.org/
+    Resolver: http://dx.doi.org/
 
 - Ark 
-PID: ark:/13030/tf5p30086k
+    PID: ark:/13030/tf5p30086k
 
-Resolver: https://nbn-resolving.org/
+    Resolver: https://nbn-resolving.org/
 
 You can either go to the resolver in your webbrowser and type in the PID to get to the data behind it. You can also concatenate the resolver and the PID.
 
