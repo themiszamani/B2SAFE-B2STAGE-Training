@@ -56,10 +56,10 @@ Each PID consists of a *prefix* which is linked to an administratory domain (e.g
 ## How do repositories create PIDs for data objects?
 ## How can you create a PID for your own data objects?
 
-1. obtain a prefix from an resolver admin
-2. set up internet connection to the PID server with a client
-3. create a PID
-4. link PID and location of the data object
+1. Obtain a prefix from an resolver admin
+2. Set up internet connection to the PID server with a client
+3. Create a PID
+4. Link PID and location of the data object
 
 All commands below are python commands unless indicated otherwise.
 
@@ -76,7 +76,7 @@ import hashlib
 import os, shutil
 ```
 ### Connect to the surfsara handle server 
-To connect to the epic server you need to provide a prefix and a password. This information is stored in a json file *credentials_test* and should look like this:
+To connect to the epic server you need to provide a prefix and a password. This information is stored in a json file *credentials* and should look like this:
 ```sh
 {
     "baseuri": "https://epic3.storage.surfsara.nl/v2_test/handles/",
@@ -87,10 +87,11 @@ To connect to the epic server you need to provide a prefix and a password. This 
     "debug" : "False"
 }
 ```
+On the test machines you can find such a file in */opt/PIDs*.
 
 - Parse credentials (username, password)
 ```py
-cred = Credentials('os', 'credentials_test')
+cred = Credentials('os', '/path/to/credentials')
 cred.parse()
 ```
 - Retrieve some information about the server, this server also hosts the resolver which we will use later
@@ -136,10 +137,18 @@ Handle = ec.createHandle(pid, fileLocation)
 ```
 
 Let’s go to the resolver and see what is stored there
-Resolver `http://epic3.storage.surfsara.nl:8001` and type in the full PID, or type
-`http://epic3.storage.surfsara.nl:8001/841/c214e045-be8e-11e5-ac88-b8e8561bdbec`
-into your browser. We can get some information on the data from the resolver.
+`http://epic3.storage.surfsara.nl:8001`. 
+We can get some information on the data from the resolver.
 We can retrieve the data object itself via the web-browser.
+
+#### Download the file via the resolver. Try to use *wget* when working remotely on our training machine.
+#### How is the data stored when downloading via the browser and how via *wget*?
+#### Have a look at the metadata stored in the PID entry.
+
+What happens if you try to reregister the file with the same PID?
+```py
+newHandle = ec.createHandle(pid, fileLocation)
+```
 
 ### Store some handy information with your file
 - We can store some more information in the PID entry with the function *modifyHandle*
@@ -152,7 +161,8 @@ ec.modifyHandle(Handle, "TYPE",
 - We want to store information on identity of the file, e.g. the md5 checksum. We first have 
 to generate the checksum. However, we can only create checksums for files which we 
 have access to with our python compiler. In the step above we can download the file and
-then conitnue to clalculate the checksum.
+then continue to calculate the checksum.
+**NOTE** the filename might depend on the download method.
 
 ```py
 import hashlib
@@ -162,6 +172,11 @@ ec.modifyHandle(Handle, "MD5", md5sum)
 ```
 
 - With the resolver we can access this information. Note, this data is publicly available to anyone.
+
+- We can also access the information via the client:
+    ```py
+    ec.retrieveHandle(Handle)
+    ```
 
 ### Updating PID entries
 - Assume location of file has changed. This means we need to modify the URL field.
@@ -178,9 +193,8 @@ ec.modifyHandle(Handle, "URL",
 We updated the "URL" with a local path on a personal machine. That means you can no longer download the data
 directly, but you have access to the data stored in the PID.
 
-* information stored with the PID is ALWAYS public
-* data itself can lie on a protected server/computer and not be accessible
-for everyone
+* Information stored with the PID is ALWAYS public
+* Data itself can lie on a protected server/computer and not be accessible for everyone
 
 ## Linking two files
 We know that the file in the figshare repository and our local file are identical. We want to store this information
@@ -191,8 +205,9 @@ in the PIDs.
 ```py
 uid = uuid.uuid1()
 print(uid)
-pid = '841'+'/'+str(uid)
+pid = cred.prefix+'/'+str(uid)
 ```
+searchHandle(self, prefix, key, value)
 
 - Link the new PID/handle to the public figshare data which is still stored in *fileLocation*
 
@@ -206,5 +221,20 @@ newHandle = ec.createHandle(pid, fileLocation)
 ec.modifyHandle(Handle, "Same_as", newHandle)
 ```
 
-#### To verify that they are the same, you have the md5sum stored in the pointer to the local file
+### Recursive look-ups
+The epic API extends the handle API with recursive look-ups. Assume you just know some of the metadata stored with a PID but not the fulle PID. How can you get to the URL field to retrieve the data?
 
+We can fetch the first data with a certain checksum:
+```py
+searchHandle(self, cred.prefix, "MD5", md5sum)
+```
+
+### Using the epicclient Command Line Interface (CLI)
+For now we directly worked with the raw functions. The epicclient can also be used as CLI. 
+You can list all options for the CLI on the commandline with:
+
+```sh 
+/opt/epd73/bin/python epicclient.py os /opt/PIDs/credentials -h
+```
+
+The functions are adjusted to the functionality in the EUDAT B2SAFE service, but can serve as reference implementation for other use cases.
