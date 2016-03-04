@@ -1,31 +1,7 @@
 # Working with Persistent Identifiers - Hands-on
-This lecture illustrates the use of PIDs, more specifically it shows how to employ handles (handle.net) using the epicclient and [EPIC API](http://www.pidconsortium.eu/).
-The code is based on the [epicclient.py](https://github.com/EUDAT-B2SAFE/B2SAFE-core/blob/master/cmd/epicclient.py).
-Please check the dependencies before you start.
+This lecture illustrates the use of PIDs, more specifically it shows how to employ [handles](handle.net) using the epicclient and [EPIC API](http://www.pidconsortium.eu/).
 
-```sh
-python epicclient.py --help
-```
-
-You will also need a handle prefix and the respective credentials.
-
-## Install python dependencies
-
-On the training machines you will find an enthought python compiler preinstalled with all neceassary dependencies:
-```sh
-/opt/epd73/bin/python
-/opt/epd73/bin/ipython
-```
-
-In case you are working on your own laptop with your own python, please install:
-
-```sh
-easy_install httplib2
-easy_install simplejson
-easy_install defusedxml
-```
-
-## Using PIDs
+## Warming-up: Using PIDs
 Below  you find three different PIDs and their corresponding global resolver
 
 - Handle 
@@ -53,6 +29,41 @@ You can either go to the resolver in your webbrowser and type in the PID to get 
 
 Each PID consists of a *prefix* which is linked to an administratory domain (e.g. a journal) and a *suffix*. The prefix is handed out by an issuer such as CNRI for handle or DataCite for DOIs. Once you are admin of a prefix, you can register as many data objects as you want by extending the prefix with a suffix. Note, that the suffixes need to be unique for each data object. The epic client helps you with that.
 
+
+## Managing PIDs
+### Prerequisites
+
+The code is based on the [epicclient.py](https://github.com/EUDAT-B2SAFE/B2SAFE-core/blob/master/cmd/epicclient.py).
+Please check the dependencies before you start.
+You will also need test credentials for the epic server.
+
+#### Install python dependencies
+
+On the training machines you will find an enthought python compiler preinstalled with all neceassary dependencies:
+```sh
+/opt/epd73/bin/python
+/opt/epd73/bin/ipython
+```
+
+#### Training machine
+pid-training.eudat-sara.vm.surfsara.nl
+
+The epicclient.py can be fount in */opt/PIDs/* on the training machine.
+
+#### Own laptop
+In case you are working on your own laptop with your own python, please install:
+
+```sh
+easy_install httplib2
+easy_install simplejson
+easy_install defusedxml
+```
+Final check
+
+```sh
+python epicclient.py --help
+```
+
 ## Managing PIDs 
 How do repositories create PIDs for data objects?
 How can you create a PID for your own data objects?
@@ -62,12 +73,6 @@ How can you create a PID for your own data objects?
 2. Set up internet connection to the PID server with a client
 3. Create a PID
 4. Link PID and location of the data object
-
-#### Training machine
-pid-training.eudat-sara.vm.surfsara.nl
-
-All commands below are python commands unless indicated otherwise.
-The epicclient.py can be fount in */opt/PIDs/* on the training machine.
 
 In the tutorial below we will work with a test handle server located at SURFsara. That means the PIDs we create are not resolvable via the global handle resolver nor the DOI resolver.
 
