@@ -11,6 +11,41 @@ You will also need a handle prefix and the respective credentials.
 
 ## Install python dependencies
 
+On the training machines you will find an enthought python compiler preinstalled with all neceassary dependencies:
+```sh
+/opt/epd73/bin/python
+/opt/epd73/bin/ipython
+```
+
+In case you are working on your own laptop with your own python, please install:
+
+```sh
+easy_install httplib2
+easy_install simplejson
+easy_install defusedxml
+```
+
+## Using PIDs
+Below  you find three different PIDs and their corresponding global resolver
+
+- Handle 
+PID: 11304/cf8956a2-39d3-11e5-8a18-f31aa6f4d448
+Resolver: http://hdl.handle.net/
+
+- Doi
+PID: 10.3389/fgene.2013.00289
+Resolver: http://dx.doi.org/
+
+- Ark 
+PID: ark:/13030/tf5p30086k
+Resolver: https://nbn-resolving.org/
+
+You can either go to the resolver in your webbrowser and type in the PID to get to the data behind it. You can also concatenate the resolver and the PID.
+
+1. Try to resolve the handle PID with the DOI resolver and vice versa.
+2. In the handle resolver you will find a box "Don't redirect to URLs", if you tick this box, what information do you get?
+
+Each PID consists of a *prefix* which is linked to an administratory domain (e.g. a journal) and a *suffix*. The prefix is handed out by an issuer such as CNRI for handle or DataCite for DOIs. Once you are admin of a prefix, you can register as many data objects as you want by extending the prefix with a suffix. Note, that the suffixes need to be unique for each data object. The epic client helps you with that.
 
 ## How do repositories create PIDs for data objects?
 ## How can you create a PID for your own data objects?
@@ -21,6 +56,10 @@ You will also need a handle prefix and the respective credentials.
 4. link PID and location of the data object
 
 All commands below are python commands unless indicated otherwise.
+
+In the tutorial below we will work with a test handle server located at SURFsara. That means the PIDs we create are not resolvable via the global handle resolver nor the DOI resolver.
+For resolving PIDs please use:
+`http://epic3.storage.surfsara.nl:8001`
 
 ### Import necessary libraries:
 
