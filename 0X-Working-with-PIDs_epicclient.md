@@ -104,7 +104,7 @@ On the test machines you can find such a file in */opt/PIDs*.
 
 - Parse credentials (username, password)
 ```py
-cred = Credentials('os', '/<path>/credentials')
+cred = Credentials('os', '/<PATH>/credentials')
 cred.parse()
 ```
 - Retrieve some information about the server, this server also hosts the resolver which we will use later
