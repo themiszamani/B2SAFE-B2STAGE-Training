@@ -9,6 +9,9 @@ python epicclient.py --help
 
 You will also need a handle prefix and the respective credentials.
 
+## Install python dependencies
+
+
 ## How do repositories create PIDs for data objects?
 ## How can you create a PID for your own data objects?
 
