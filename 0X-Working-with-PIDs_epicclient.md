@@ -1,5 +1,5 @@
 # Working with Persistent Identifiers - Hands-on
-This lecture illustrates the use of PIDs, more specifically it shows how to employ handles (handle.net).
+This lecture illustrates the use of PIDs, more specifically it shows how to employ handles (handle.net) using the epicclient and [EPIC API](http://www.pidconsortium.eu/).
 The code is based on the [epicclient.py](https://github.com/EUDAT-B2SAFE/B2SAFE-core/blob/master/cmd/epicclient.py).
 Please check the dependencies before you start.
 
