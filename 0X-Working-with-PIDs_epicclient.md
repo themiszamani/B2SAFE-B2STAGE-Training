@@ -75,7 +75,7 @@ How can you create a PID for your own data objects?
 3. Create a PID
 4. Link PID and location of the data object
 
-In the tutorial below we will work with a test handle server located at SURFsara. That means the PIDs we create are not resolvable via the global handle resolver nor the DOI resolver.
+In the tutorial below we will work with a test handle server located at SURFsara. That means the PIDs we create are not resolvable via the global handle resolver or via the DOI resolver.
 
 #### For resolving PIDs please use:
 `http://epic3.storage.surfsara.nl:8001`
@@ -88,7 +88,7 @@ import uuid
 import hashlib
 import os, shutil
 ```
-### Connect to the surfsara handle server 
+### Connect to the SURFsara handle server 
 To connect to the epic server you need to provide a prefix and a password. This information is stored in a json file *credentials* and should look like this:
 ```sh
 {
@@ -118,7 +118,8 @@ print "PID prefix", ec.cred.prefix
 ```
 
 ## Registering a file
-### We will register a public file from figshare. First store the file location
+### We will register a public file from figshare. 
+First store the file location.
 ```py
 fileLocation = "https://ndownloader.figshare.com/files/2292172"
 ```
@@ -154,11 +155,13 @@ Let’s go to the resolver and see what is stored there
 We can get some information on the data from the resolver.
 We can retrieve the data object itself via the web-browser.
 
-#### Download the file via the resolver. Try to use *wget* when working remotely on our training machine.
-#### How is the data stored when downloading via the browser and how via *wget*?
-#### Have a look at the metadata stored in the PID entry.
+**Download the file via the resolver. Try to use *wget* when working remotely on our training machine.**
 
-What happens if you try to reregister the file with the same PID?
+**How is the data stored when downloading via the browser and how via *wget*?**
+
+**Have a look at the metadata stored in the PID entry.**
+
+**What happens if you try to reregister the file with the same PID?**
 ```py
 newHandle = ec.createHandle(pid, fileLocation)
 ```
@@ -175,6 +178,7 @@ ec.modifyHandle(Handle, "TYPE",
 to generate the checksum. However, we can only create checksums for files which we 
 have access to with our python compiler. In the step above we can download the file and
 then continue to calculate the checksum.
+
 **NOTE** the filename might depend on the download method.
 
 ```py
@@ -199,9 +203,9 @@ ec.modifyHandle(Handle, "URL",
     "<PATH>/surveys.csv")
 ```
 
-#### Try to fetch some metadata on the file from the resolver
-#### Try to resolve directly to the file
-#### What happens?
+**Try to fetch some metadata on the file from the resolver.**
+
+**Try to resolve directly to the file. What happens?**
 
 We updated the "URL" with a local path on a personal machine. That means you can no longer download the data
 directly, but you have access to the data stored in the PID.
