@@ -180,7 +180,7 @@ then continue to calculate the checksum. **NOTE** the filename might depend on t
 
 ```py
 import hashlib
-md5sum = hashlib.md5('surveys.csv').hexdigest()
+md5sum = hashlib.md5('/<PATH>/surveys.csv').hexdigest()
 ec.modifyHandle(Handle, 'MD5', md5sum)
 ```
 
