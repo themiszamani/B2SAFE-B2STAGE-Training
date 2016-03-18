@@ -57,6 +57,7 @@ In case you are working on your own laptop with your own python, please install:
 ```sh
 easy_install httplib2
 easy_install simplejson
+easy_install lxml
 easy_install defusedxml
 ```
 Final check
