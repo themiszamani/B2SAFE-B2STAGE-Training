@@ -243,7 +243,7 @@ newHandle = ec.register_handle(pid, fileLocation)
 ec.modify_handle_value(Handle, ttl=None, add_if_not_exist=True, **dict([('REPLICA', newHandle)]))
 ```
 
-### Recursive look-ups
+### Reverse look-ups
 **TODO**
 The epic API extends the handle API with recursive look-ups. Assume you just know some of the metadata stored with a PID but not the full PID. How can you get to the URL field to retrieve the data?
 
