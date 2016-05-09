@@ -1,5 +1,11 @@
 # Working with Persistent Identifiers - Hands-on
-This lecture illustrates the use of PIDs, more specifically it shows how to employ [handles](handle.net) using the epicclient and [EPIC API](http://www.pidconsortium.eu/).
+This lecture illustrates the use of PIDs, more specifically it shows how to employ [handles](handle.net) using the [B2HANDLE library](https://github.com/EUDAT-B2SAFE/B2HANDLE).
+
+## Prerequisites
+If you are not working on one of our test machines you need to install the B2HANDLE library and apply for a prefix. For instructions please follow the documentation:
+
+https://github.com/EUDAT-B2SAFE/B2HANDLE/blob/master/README.md
+http://eudat-b2safe.github.io/B2HANDLE/handleclient.html#authentication
 
 ## Warming-up: Using PIDs
 Below  you find three different PIDs and their corresponding global resolver
@@ -60,18 +66,13 @@ easy_install simplejson
 easy_install lxml
 easy_install defusedxml
 ```
-Final check
-
-```sh
-python epicclient.py --help
-```
 
 ## Managing PIDs 
 How do repositories create PIDs for data objects?
 How can you create a PID for your own data objects?
 
 #### Example workflow
-1. Obtain a prefix from an resolver admin
+1. Obtain a prefix from an resolver admin (See Prerequisites)
 2. Set up internet connection to the PID server with a client
 3. Create a PID
 4. Link PID and location of the data object
@@ -84,38 +85,42 @@ In the tutorial below we will work with a test handle server located at SURFsara
 ### Import necessary libraries:
 
 ```py
-from epicclient import EpicClient, LocationType, Credentials
+from b2handle.clientcredentials import PIDClientCredentials
+from b2handle.handleclient import EUDATHandleClient
+
 import uuid
 import hashlib
 import os, shutil
 ```
 ### Connect to the SURFsara handle server 
-To connect to the epic server you need to provide a prefix and a password. This information is stored in a json file *credentials* and should look like this:
+To connect to the epic server you need to provide a prefix, the private key and the certificate; alternatively the library also provides authentication with username/password. This information is stored in a json file *credentials* and should look like this:
 ```sh
 {
-    "baseuri": "https://epic3.storage.surfsara.nl/v2_test/handles/",
-    "username": "841",
+    "handle_server_url": "https://epic3.storage.surfsara.nl:8001",
+    "private_key": "/<full path>/credentials/355_841_privkey.pem",
+    "certificate_only": "/<full path>/credentials/355_841_certificate_only.pem",
     "prefix": "841",
-    "password": "XXX",
-    "accept_format": "application/json",
-    "debug" : "False"
+    "handleowner": "200:0.NA/841",
+    "reverse_username": "841",
+    "reverse_password": "****",
+    "HTTPS_verify": "True"
 }
 ```
-On the test machines you can find such a file in */opt/PIDs*.
+On the test machines you can find such a file and all necessary certificates and keys in */opt/PIDs*.
 
-- Parse credentials (username, password)
+- Parse credentials
 ```py
-cred = Credentials('os', '/<PATH>/credentials')
-cred.parse()
+cred = PIDClientCredentials.load_from_JSON('credentials/cred_file.json')
 ```
 - Retrieve some information about the server, this server also hosts the resolver which we will use later
 ```py
-ec = EpicClient(cred)
-print('PID server ' + ec.cred.baseuri)
+print('PID prefix ' + cred.get_prefix())
+print('Server ' + cred.get_server_URL())
 ```
-- The PID prefix is your user name which is coupled to an administratory domain
+
+- Create an instance of the client by oassing your credentials:
 ```py
-print('PID prefix' + ec.cred.prefix)
+ec = EUDATHandleClient.instantiate_with_credentials(cred)
 ```
 
 ## Registering a file
@@ -137,7 +142,7 @@ print(type(uid))
 
 - Concatenate your PID prefix and the uuid to create the full PID
 ```py
-pid = cred.prefix + '/' + str(uid)
+pid = cred.get_prefix() + '/' + str(uid)
 print(pid)
 ```
 
@@ -148,7 +153,7 @@ The suffix has been created with the uuid function.
 - Link the PID and the data object. We would like the PID to point to the location we stored in *fileLocation*
 
 ```py
-Handle = ec.createHandle(pid, fileLocation)
+Handle = ec.register_handle(pid, fileLocation)
 ```
 
 Let’s go to the resolver and see what is stored there
@@ -170,8 +175,12 @@ newHandle = ec.createHandle(pid, fileLocation)
 ### Store some handy information with your file
 - We can store some more information in the PID entry with the function *modifyHandle*
 ```py
-?ec.modifyHandle
-ec.modifyHandle(Handle, 'TYPE', 'Data Carpentry pandas example file')
+?ec.modify_handle_value
+```
+We can update and create several key-value pairs in one go. To this end we create a python dictionary and pass it to the function.
+```py
+args = dict([('TYPE', 'file')])
+ec.modify_handle_value(Handle, ttl=None, add_if_not_exist=True, **args)
 ```
 
 - We want to store information on identity of the file, e.g. the md5 checksum. We first have 
@@ -182,7 +191,8 @@ then continue to calculate the checksum. **NOTE** the filename might depend on t
 ```py
 import hashlib
 md5sum = hashlib.md5('/<PATH>/surveys.csv').hexdigest()
-ec.modifyHandle(Handle, 'MD5', md5sum)
+args = dict([('TYPE', 'file'), ('MD5', md5sum)])
+ec.modify_handle_value(Handle, ttl=None, add_if_not_exist=True, **args)
 ```
 
 - With the resolver we can access this information. Note, this data is publicly available to anyone.
@@ -196,7 +206,7 @@ ec.modifyHandle(Handle, 'MD5', md5sum)
 - Assume location of file has changed. This means we need to modify the URL field.
 
 ```py
-ec.modifyHandle(Handle, 'URL', '/<PATH>/surveys.csv')
+ec.modify_handle_value(Handle, ttl=None, add_if_not_exist=True, **dict([('URL', '/<PATH>/surveys.csv')]))
 ```
 
 **Try to fetch some metadata on the file from the resolver.**
@@ -218,28 +228,29 @@ in the PIDs.
 ```py
 uid = uuid.uuid1()
 print(uid)
-pid = cred.prefix + '/' + str(uid)
+pid = cred.get_prefix() + '/' + str(uid)
 ```
-searchHandle(self, prefix, key, value)
 
 - Link the new PID/handle to the public figshare data which is still stored in *fileLocation*
 
 ```py
-newHandle = ec.createHandle(pid, fileLocation)
+newHandle = ec.register_handle(pid, fileLocation)
 ```
 
 - Leave information that local file should be the same as the figshare file
 
 ```py
-ec.modifyHandle(Handle, 'Same_as', newHandle)
+ec.modify_handle_value(Handle, ttl=None, add_if_not_exist=True, **dict([('REPLICA', newHandle)]))
 ```
 
 ### Reverse look-ups
+**TODO**
 The epic API extends the handle API with recursive look-ups. Assume you just know some of the metadata stored with a PID but not the full PID. How can you get to the URL field to retrieve the data?
 
 We can fetch the first data with a certain checksum:
 ```py
-Handle = ec.searchHandle(cred.prefix, 'MD5', md5sum)
+args = dict([('CHECKSUM', str(''.join(md5sum)))])
+Handle = ec.search_handle(**args)
 url = ec.getValueFromHandle(Handle, 'URL')
 print(url) 
 ```
@@ -249,7 +260,7 @@ For now we directly worked with the raw functions. The epicclient can also be us
 You can list all options for the CLI on the commandline with:
 
 ```sh 
-/opt/epd73/bin/python epicclient.py os /opt/PIDs/credentials -h
+/opt/epd73/bin/python epicclient22.py os /opt/PIDs/credentials -h
 ```
 
 The functions are adjusted to the functionality in the EUDAT B2SAFE service, but can serve as reference implementation for other use cases.
