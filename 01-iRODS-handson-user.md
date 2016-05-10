@@ -31,17 +31,19 @@ Enter the port number: 1247
 Enter your irods user name: <irodsuser>
 Enter your irods zone: <zonename>
 ```
-The prot numer is standard 1247. The zone name you have been provided when receiving your username and password.
+The port numer is standard 1247. The zone name, username and password will be provided by the iRODS admin.
 
 ### Some iRODS concepts
 **iRODS zone**: always contains exsctly one so-called iCAT catalogue, which is a database containing user information, the mapping from physical storage to iRODS logical path for data and hosts metadata attached to data.
+
 **Resources**: Software or Hardware system that stores data. The iRODS system abstracts from the hardware and software so that you, as a user, can put data into certain resources without specific knowledge on the protocols to use.
+
 **iRODS collections**: As a user you have access to a collection, just as a home dorectory in a linux system. In this collection you can create subcollections and store data. You can retrieve and store data and collections by using the iRODS (virtual) path. The iCAT catalogue will take care of the mapping to the actual physical path.
 
 ### The iRODS environment
 With the following command you can retrieve some information on the iRODS system you are working on:
 ```sh
-env
+ienv
 ```
 You will see an answer of the system similar to the one below:
 ```sh
@@ -53,6 +55,17 @@ NOTICE: irods_zone_name – aliceZone
 NOTICE: created irodsHome=/aliceZone/home/irods
 NOTICE: created irodsCwd=/aliceZone/home/irods
 ```
+
+**Some useful commands for session management**
+
+iinit       | Log on
+------------|---------------------------
+iexit       | Log off
+ienv        | Client settings
+ihelp       | List of icommands
+ipasswd     | Change iRODS password
+iuserinfo   | User info
+ierror      | Information on error code
 
 To see which physical resources are attached to the iRODS instance and what their logical names are, you can use:
 ```sh
