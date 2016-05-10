@@ -59,7 +59,6 @@ NOTICE: created irodsCwd=/aliceZone/home/irods
 **Some useful commands for session management**
 
 iinit       | Log on
-------------|---------------------------
 iexit       | Log off
 ienv        | Client settings
 ihelp       | List of icommands
