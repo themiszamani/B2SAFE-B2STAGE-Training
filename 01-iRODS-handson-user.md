@@ -58,11 +58,8 @@ NOTICE: created irodsCwd=/aliceZone/home/irods
 
 **Some useful commands for session management**
 
-[]()  | 
+[]()  | []() 
 ------|------
-Row 1 | row 2
-
-
 iinit       | Log on
 iexit       | Log off
 ienv        | Client settings
