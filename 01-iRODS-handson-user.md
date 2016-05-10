@@ -57,6 +57,13 @@ NOTICE: created irodsCwd=/aliceZone/home/irods
 ```
 
 **Some useful commands for session management**
+
+| | | |
+|-|-|-|
+| Normal Key| Value1 |
+|__BoldKey__| Value2 |
+
+
 | | | |
 |-|-|-|  
 iinit       | Log on
