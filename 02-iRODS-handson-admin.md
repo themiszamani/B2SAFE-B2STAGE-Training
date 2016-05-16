@@ -28,7 +28,8 @@ Since iRODS is executed not as your local user but as *irods*, putting data into
 
 ```sh
 iput -R newResc put2.txt
-ERROR: putUtil: put error for /alicetestZone/home/alice/put2.txt, status = -520013 status = -520013 UNIX_FILE_MKDIR_ERR, Permission denied
+ERROR: putUtil: put error for /alicetestZone/home/alice/put2.txt, 
+ status = -520013 status = -520013 UNIX_FILE_MKDIR_ERR, Permission denied
 ```
 
 This can be helped by granting read and write access to the *irods* user.
@@ -52,25 +53,25 @@ iadmin mkresc replResc replication
 The keyword *replication* triggers the behaviour of this ccordinating resource. It will replicate all data ingested to the attached resources.
 
 **Connect the resources**
-``sh
+```sh
 iadmin addchildtoresc replResc storage1
 iadmin addchildtoresc replResc storage2
-``
+```
 
 We can inspect the resource tree and put data
-``sh
+```sh
 ilsresc
 iput -R replResc put2.txt
-``
+```
 When we inspect where *put2.txt* ended up we find that it is replicated between *storage1* and *storage2*
 
-``sh
+```sh
 ils -L put2.txt
   alice             0 replResc;storage2           13 2016-05-05.00:12 & put2.txt
         generic    /var/lib/irods/iRODS/storage2/home/alice/put2.txt
   alice             1 replResc;storage1           13 2016-05-05.00:12 & put2.txt
         generic    /var/lib/irods/iRODS/storage1/home/alice/put2.txt
-``
+```
 
 []()  | []()
 ------|------
