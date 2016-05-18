@@ -44,7 +44,9 @@ itrim -n 1 put1.txt
 ```
 
 **Exercise** What happens if you rereplicate the file to *globalResc*?
+
 **Exercise** What happens if you call *itrim* without the *-n* option?
+
 **Exercise** How can you reduce the number of replicas to 1?
 
 []()  | []()
@@ -181,5 +183,3 @@ The first argument of *msiExecCmd* is the actual command. In that case the pytho
 
 ### Final exercise
 Write a rule that periodically chacks whether new data is ingested into a certain collection and automatically replicate the data to a dedicated storage resource. You can make use of delayed iRODS rules. Also have, look at which microservices can be of help. 
-
-
