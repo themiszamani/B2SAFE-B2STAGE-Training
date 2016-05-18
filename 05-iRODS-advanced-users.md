@@ -135,7 +135,7 @@ iqdel   | Delete a scheduled rule
 iRODS provides a default rule base in */etc/irods/core.re*. These rules can be employed and called by your own rules.
 More examples how rules can look like are provided in */var/lib/irods/iRODS/clients/icommands/test/rules3.0/*.
 
-In the followoeing example we make use of the *printHello* rule from the *core.re*:
+In the following example we make use of the *printHello* rule from the *core.re*:
 ```sh
 HelloWorld{
     if(*name=="<YourName>"){
