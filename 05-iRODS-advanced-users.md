@@ -182,4 +182,4 @@ The first argument of *msiExecCmd* is the actual command. In that case the pytho
 **Note** that all commands that you call need to be located in *iRODS/server/bin/cmd*. 
 
 ### Final exercise
-Write a rule that periodically chacks whether new data is ingested into a certain collection and automatically replicate the data to a dedicated storage resource. You can make use of delayed iRODS rules. Also have, look at which microservices can be of help. 
+Write a rule that periodically chacks whether new data is ingested into a certain collection and automatically replicate the data to a dedicated storage resource. You can make use of delayed iRODS rules. Some microservices can be of help. 
