@@ -46,7 +46,7 @@ The code is based on cURL. cURL is an open source command line tool and library 
 CURL: is an open source command line tool and library for transferring data with URL syntax.
 On the training machines 
 
-```sh
+```py
 apt-get install curl 
 apt-get install uuid-runtime 
 ```
@@ -55,14 +55,14 @@ apt-get install uuid-runtime
 
 In case you are working on your own laptop with your own python, please install:
 
-```sh
+```py
 easy_install curl
 easy_install uuid-runtime
 ```
 
 Final check
 
-```sh
+```py
 curl --help
 ```
 
@@ -124,6 +124,7 @@ PID_SUFFIX=XXXX #the suffix of the first created handle
 PID2_SUFFIX=YYYY #the suffix of the second handle
 ```
 
+ - Get the list of handles in 841 prefix as an example. 
 ```py
 curl -u "841:XXX" -H "Accept: application/json" \
 	 -H "Content-Type: application/json" \
@@ -131,18 +132,18 @@ curl -u "841:XXX" -H "Accept: application/json" \
 ```
 
 - Connect with your credentials (username, password)
-```sh
+```py
 -u "841:XXX"
 ```
 - Use the correct headers to send and accept json format 
 
-```sh
+```py
 -H "Accept: application/json" -H "Content-Type: application/json"
 ```
 
 - The PID prefix is combined with the pid server url  
 
-```sh
+```py
 https://epic3.storage.surfsara.nl/v2_test/handles/841/
 ```
 
@@ -152,7 +153,7 @@ https://epic3.storage.surfsara.nl/v2_test/handles/841/
 
 First prepare the data in a json format to register. 
 
-```sh
+```py
 '[{"type":"URL","parsed_data":"https://ndownloader.figshare.com/files/2292172"}]'
 ```
 
@@ -160,7 +161,7 @@ We are going to create a new PID by using the PUT request
 
 So the request method is -X PUT followed by the actual json data 
 
-```sh
+```py
 -X PUT --data '[{"type":"URL","parsed_data":"https://ndownloader.figshare.com/files/2292172"}]'
 ```
 
@@ -168,7 +169,7 @@ So the request method is -X PUT followed by the actual json data
 
 - Create a universally unique identifier (uuid)
 - Take function for this from
-```sh
+```py
 SUFFIX=`uuidgen`
 ```
 
@@ -179,14 +180,14 @@ We now have an opaque string which is unique to our resolver (841/$SUFFIX ) sinc
 the prefix is unique (handed out by administrators of the resolver).
 
 The URL in the CURL request: 
-```sh
+```py
 https://epic3.storage.surfsara.nl/v2_test/handles/841/$SUFFIX 
 ```
 
 - Register the PID, link the PID and the data object. We would like the PID to point to the location we stored in *fileLocation*
 (example1.sh)
 
-```sh
+```py
 #!/bin/bash    
 
 SUFFIX=`uuidgen`
@@ -225,7 +226,7 @@ We can retrieve the data object itself via the web-browser.
 
 Dont forget to change the UUD1 to the correct suffix value.
 
-```sh
+```py
 curl -v -u "YOURUSERNAME:YOURPASSWORD" -H "Accept:application/json" \
 		-H "Content-Type:application/json" \
 		-X PUT --data '[{"type":"URL","parsed_data":"https://ndownloader.figshare.com/files/2292172"}]'\
@@ -247,7 +248,7 @@ We have to update the json data
 
 And the actual request is:
 
-```sh
+```py
 curl -v -u "YOURUSERNAME:YOURPASSWORD" -H "Accept:application/json" \
 		-H "Content-Type:application/json" \
 		-X PUT --data '[{"type":"URL","parsed_data":"https://ndownloader.figshare.com/files/2292172"}, {"type":"TYPE","parsed_data":"Data Carpentry pandas example file"}]'\
@@ -280,7 +281,7 @@ Use example4.sh
 The epic API extends the handle API with recursive look-ups. Assume you just know some of the metadata stored with a PID but not the full PID. How can you get to the URL field to retrieve the data?
 
 We can fetch the first data with a certain checksum:
-```sh
+```py
 curl -v -u "YOURUSERNAME:YOURPASSWORD" -H "Accept:application/json" \
 		-H "Content-Type:application/json" \
 		-X GET \
@@ -297,7 +298,7 @@ Use example5.sh
 ### Updating PID entries
 - Assume location of file has changed. This means we need to modify the URL field.
 
-```sh
+```py
 curl -v -u "YOURUSERNAME:YOURPASSWORD" -H "Accept:application/json" \
 		-H "Content-Type:application/json" \
 		-X POST --data '[{"type":"URL","parsed_data":"/<PATH>/surveys.csv"}]'\
@@ -328,7 +329,7 @@ in the PIDs.
 
 - Reregister the figshare file
 - First create a new PID
-```sh
+```py
 #!/bin/bash    
 
 SUFFIX=`uuidgen`
@@ -346,7 +347,7 @@ First update the json
 	[{"type":"URL","parsed_data":"/<PATH>/surveys.csv"},{"type":"SAME_AS","parsed_data":"841/newhandle"}]
 ```
 
-```sh
+```py
 curl -v -u "YOURUSERNAME:YOURPASSWORD" -H "Accept:application/json" \
 		-H "Content-Type:application/json" \
 		-X POST --data '[{"type":"URL","parsed_data":"/<PATH>/surveys.csv",},{"type":"SAME_AS","parsed_data":"841/newhandle"}]'\
