@@ -35,7 +35,7 @@ Each PID consists of a *prefix* which is linked to an administratory domain (e.g
 
 ### Prerequisites
 
-The code is based on the cURL library. cURL Library is a tool and a library (usable from many languages) for client-side URL transfers, supporting FTP, FTPS, HTTP, HTTPS, TELNET, DICT, FILE and LDAP.
+The code is based on cURL. cURL is an open source command line tool and library for transferring data with URL syntax. cURL is used in command lines or scripts to transfer data.
 
  * Please check the dependencies before you start.
  * You will also need test credentials for the epic server.
@@ -43,7 +43,7 @@ The code is based on the cURL library. cURL Library is a tool and a library (usa
 
 #### Install cURL dependencies
 
-CURL: A command line tool for getting or sending files using URL syntax.
+CURL: is an open source command line tool and library for transferring data with URL syntax.
 On the training machines 
 
 ```sh
@@ -66,7 +66,7 @@ Final check
 curl --help
 ```
 
-If you write the code described below in a file, dont forget to change the permissions of the file. 
+If you write the code described below in a file, don't forget to change the permissions. 
 You should make each file executable. 
 
 Suppose you have a file `filename.sh` 
@@ -101,12 +101,12 @@ The main command
   
 Before we start, lets explain the main parameters of CURL used as options 
 
- * -X, --request <command> : (HTTP) Specifies a custom request method to use when communicating with the HTTP server. The specified request method will be used instead of the method otherwise used (which defaults to GET).  Common additional HTTP requests include PUT ,POST and DELETE . ( -X GET) 
- * -U, --proxy-user <user:password>: Specify the user name and password to use for proxy authentication. (ex: -u "username:pass) 
- * -H, --header <header>: Extra header to include in the request when sending HTTP to a server. You may specify any number of extra headers.(ex: -H "Accept: application/json" so as to accept json data)
- * -d, --data <data>: (HTTP) Sends the specified data in a POST or PUT request to the HTTP server, in the same way that a browser does when a user has filled in an HTML form and presses the submit button. 
- * -D, --dump-header <file>: Write the protocol headers to the specified file.
- * -v : get verbosed information about the connection with the server 
+ * **-X, --request <command>**: (HTTP) Specifies a custom request method to use when communicating with the HTTP server. The specified request method will be used instead of the method otherwise used (which defaults to GET).  Common additional HTTP requests include PUT ,POST and DELETE . ( -X GET) 
+ * **-U, --proxy-user <user:password>**: Specify the user name and password to use for proxy authentication. (ex: -u "username:pass) 
+ * **-H, --header <header>**: Extra header to include in the request when sending HTTP to a server. You may specify any number of extra headers.(ex: -H "Accept: application/json" so as to accept json data)
+ * **-d, --data <data>**: (HTTP) Sends the specified data in a POST or PUT request to the HTTP server, in the same way that a browser does when a user has filled in an HTML form and presses the submit button. 
+ * **-D, --dump-header <file>**: Write the protocol headers to the specified file.
+ * **-v**: get verbosed information about the connection with the server 
  
 These are the main parameters we are going to use in our examples. For more parameters please check [cURL]Chttps://curl.haxx.se/)
 
@@ -115,16 +115,16 @@ These are the main parameters we are going to use in our examples. For more para
 To connect to the epic server you need to provide a prefix and a password. 
 If you use the example files, this information is stored in a *config.txt* file  and should look like this:
 
-```sh
+```py
 USERNAME=841
 PASSWORD=xxxx
-FILENAME=surveys.csv #the file we are going to use in the examples
+FILENAME=surveys.csv #the file (and its location) we are going to use in the examples
 PID_SERVER=https://epic3.storage.surfsara.nl/v2_test/handles/841 #be carefull not to add the trailing slash
 PID_SUFFIX=XXXX #the suffix of the first created handle
 PID2_SUFFIX=1386ff04-1cfe-11e6-b291-aa0cf4c87808 #the suffix of the second handle
 ```
 
-```sh
+```py
 curl -u "841:XXX" -H "Accept: application/json" -H "Content-Type: application/json" https://epic3.storage.surfsara.nl/v2_test/handles/841/
 ```
 
