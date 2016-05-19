@@ -121,11 +121,13 @@ PASSWORD=xxxx
 FILENAME=surveys.csv #the file (and its location) we are going to use in the examples
 PID_SERVER=https://epic3.storage.surfsara.nl/v2_test/handles/841 #be carefull not to add the trailing slash
 PID_SUFFIX=XXXX #the suffix of the first created handle
-PID2_SUFFIX=1386ff04-1cfe-11e6-b291-aa0cf4c87808 #the suffix of the second handle
+PID2_SUFFIX=YYYY #the suffix of the second handle
 ```
 
 ```py
-curl -u "841:XXX" -H "Accept: application/json" -H "Content-Type: application/json" https://epic3.storage.surfsara.nl/v2_test/handles/841/
+curl -u "841:XXX" -H "Accept: application/json" \
+	 -H "Content-Type: application/json" \
+	 https://epic3.storage.surfsara.nl/v2_test/handles/841/
 ```
 
 - Connect with your credentials (username, password)
