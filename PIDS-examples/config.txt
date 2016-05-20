@@ -1,0 +1,6 @@
+USERNAME=841
+PASSWORD= xxxx #your password
+FILENAME=surveys.csv
+PID_SERVER=https://epic3.storage.surfsara.nl/v2_test/handles/841 #be carefull dont add the trailing slash
+PID_SUFFIX= #add the suffix of the first handle
+PID2_SUFFIX=  #add the suffix of the second handle
