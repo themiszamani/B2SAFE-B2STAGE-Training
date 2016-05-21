@@ -16,6 +16,6 @@ File | Target audience
 02-iRODS-handson-admin.md	| site admins and interested researchers
 03-install-B2SAFE.md	| site admins
 04-iRODS_federations_configuration.md	| site admins and interested researchers
-05-iRODS-federations-handson.md	| site admins and researchers
+05-iRODS-advanced-users.md	| site admins and researchers
 06-B2SAFE-handson.md	| site admins and data managers
 0X-Working-with-PIDs.md | site admins and interested researchers
