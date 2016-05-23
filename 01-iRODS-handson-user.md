@@ -10,7 +10,7 @@ To this end we will make use of the icommands.
 The whole tutorial will guide you through the workflow indicated in the figure below. This part is about **Step 1** ingesting data and administering data in iRODS via the icommands. You will have the role as an iRODS user.
 All commands shown in this part are either icommands or shell commands.
 
-<img src="img/workflow.png" width="400px">
+<img align="center" src="img/workflow.png" width="400px">
 
 ### Connecting to the iRODS server
 First we connect to an iRODS server and authenticate as iRODS user. The user account has to be created by the iRODS admin beforehand, see the following section [Part 02](https://github.com/EUDAT-Training/B2SAFE-B2STAGE-Training/blob/master/02-iRODS-handson-admin.md).
