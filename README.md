@@ -27,7 +27,7 @@ File | Target audience
 ## Setup
 During the tutorial site admins and users will jointly setup an infrastructure like indicated in the picture below.
 
-<img align="centre" src="img/VM-setup.png" width="400px">
+<img align="centre" src="img/VM-setup.png" width="800px">
 
 ### Users - Training
 Users can get access to a setup of virtual machines (VMs) like above. The tutorial will show them the functionality of single components and how to combine them in order to arrive at proper data management.
