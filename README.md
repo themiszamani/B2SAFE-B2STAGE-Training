@@ -1,5 +1,7 @@
 # B2SAFE-B2STAGE-Training
-<img align="right" src="img/B2SAFE.png">
+<img align="right" src="img/B2SAFE.png" width="400px">
+<img align="right" src="img/B2STAGE.png" width="400px">
+<img align="right" src="img/B2HANDLE.png" width="400px">
 ## Contents
 This training module provides hands-on material for iRODS4, EUDAT B2SAFE, the epicclient (based on handle version 8) and 
 [B2STAGE](https://github.com/WillemElbers/B2SAFE-GridFTP).
