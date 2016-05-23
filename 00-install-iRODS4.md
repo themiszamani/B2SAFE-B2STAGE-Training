@@ -72,11 +72,11 @@ Add newuser to sudoers
 sudo apt-get install postgresql
 ```
 
-### 5. Set localhost name
+### 5. Set host name
 
 ```sh
-hostnamectl set-hostname new-hostname
-echo "IPa.ddr.ess new-hostname" >> /etc/hosts
+hostnamectl <set-hostname> <new-hostname>
+echo "IPa.ddr.ess <new-hostname>" >> /etc/hosts
 ```
 
 ## Installing iRODS
@@ -90,7 +90,7 @@ GRANT ALL PRIVILEGES ON DATABASE "ICAT" to irods;
 \q
 exit
 ```
-### 7. Download iand install iRODS packages
+### 7. Download and install iRODS packages
 ```sh
 wget ftp://ftp.renci.org/pub/irods/releases/4.1.6/ubuntu14/irods-icat-4.1.6-ubuntu14-x86_64.deb
 wget ftp://ftp.renci.org/pub/irods/releases/4.1.6/ubuntu14/irods-database-plugin-postgres-1.6-ubuntu14-x86_64.deb
