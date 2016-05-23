@@ -1,7 +1,6 @@
 # iRODS for users
 This lecture introduces you to the basics what iRODS is and how you do simple data management as a user. 
-To this end we wil make use of the icammands.
-
+To this end we will make use of the icommands.
 
 ## Prerequisites
 - A user account on an iRODS 4.1.X system
@@ -10,10 +9,11 @@ To this end we wil make use of the icammands.
 ## Outline
 The whole tutorial will guide you through the workflow indicated in the figure below. This part is about **Step 1** ingesting data and administering data in iRODS via the icommands. You will have the role as an iRODS user.
 All commands shown in this part are either icommands or shell commands.
-<img src="https://github.com/chStaiger/B2SAFE-B2STAGE-Training/blob/master/B2SAFE_using.png" width="400px">
+
+<img src="img/workflow.png" width="400px">
 
 ### Connecting to the iRODS server
-First we connect to an iRODS server and authenticate as iRODS user. The user account has to be created by the iRODS admin beforehand.
+First we connect to an iRODS server and authenticate as iRODS user. The user account has to be created by the iRODS admin beforehand, see the following section [Part 02](https://github.com/EUDAT-Training/B2SAFE-B2STAGE-Training/blob/master/02-iRODS-handson-admin.md).
 
 ```sh
 iinit
@@ -33,13 +33,14 @@ Enter your irods user name: <irodsuser>
 Enter your irods zone: <zonename>
 ```
 The port numer is standard 1247. The zone name, username and password will be provided by the iRODS admin.
+You can revisit the file and configuration in *.irods/irods_environment.json*. If you want to login as another iRODS user you will have to alter this file.
 
 ### Some iRODS concepts
-**iRODS zone**: always contains exsctly one so-called iCAT catalogue, which is a database containing user information, the mapping from physical storage to iRODS logical path for data and hosts metadata attached to data.
+**iRODS zone**: always contains exactly one so-called iCAT catalogue, which is a database containing user information, the mapping from physical storage to iRODS logical path for data and which hosts metadata attached to data.
 
 **Resources**: Software or Hardware system that stores data. The iRODS system abstracts from the hardware and software so that you, as a user, can put data into certain resources without specific knowledge on the protocols to use.
 
-**iRODS collections**: As a user you have access to a collection, just as a home dorectory in a linux system. In this collection you can create subcollections and store data. You can retrieve and store data and collections by using the iRODS (virtual) path. The iCAT catalogue will take care of the mapping to the actual physical path.
+**iRODS collections**: As a user you have access to a collection, just as a home directory on a linux system. In this collection you can create subcollections and store data. You can retrieve and store data and collections by using the iRODS (logical) path. The iCAT catalogue will take care of the mapping to the actual physical path.
 
 ### The iRODS environment
 With the following command you can retrieve some information on the iRODS system you are working on:
@@ -83,7 +84,7 @@ class: cache
 location: iRODS4.alice
 vault: /irodsVault
 ```
-This command lists all resources defined in the iRODS zone and their type, i.e. there is one resource of type *unix file system*. The value after *vault* tells us where our data will be stored physically when added to the resource. *location* gives the server name of the resource, in theis case it is the iRODS server itself. Check with:
+This command lists all resources defined in the iRODS zone and their type, i.e. there is one resource of type *unix file system*. The value after *vault* tells us where our data will be stored physically when added to the resource. *location* gives the server name of the resource, in this case it is the iRODS server itself. Check with:
 
 ```sh
 hostname
@@ -96,7 +97,6 @@ The most important icommand will be:
 ihelp
 ```
 This will print out all commands the client knows.
-
 
 **Navigating through collections**
 
@@ -172,7 +172,7 @@ To download data from iRODS you can use
 ```sh
 iget -K -P -f put1.txt
 ```
-The option *-K* tells iRODS to verify the chacksum on the fly.
+The option *-K* tells iRODS to verify the checksum.
 To list all options for the command use
 ```sh
 iget -h
