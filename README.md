@@ -20,7 +20,7 @@ File | Target audience
 04-iRODS_federations_configuration.md	| site admins and interested researchers
 05-iRODS-advanced-users.md	| site admins and researchers
 06-B2SAFE-handson.md	| site admins and data managers
-07*-Working-with-PIDs_*.md | site admins and interested researchers
+07\*-Working-with-PIDs_\*.md | site admins and interested researchers
 08-install-B2STAGE.md | site admins
 09-using-B2STAGE.md | researchers, last exercise is a joint effort between researchers and site admins
 
