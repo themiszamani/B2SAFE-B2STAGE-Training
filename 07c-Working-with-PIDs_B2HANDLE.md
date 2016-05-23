@@ -38,34 +38,12 @@ Each PID consists of a *prefix* which is linked to an administratory domain (e.g
 
 
 ## Managing PIDs
-### Prerequisites
-
-The code is based on the [epicclient.py](https://github.com/EUDAT-B2SAFE/B2SAFE-core/blob/master/cmd/epicclient.py).
-Please check the dependencies before you start.
-You will also need test credentials for the epic server.
-
-#### Install python dependencies
-
-On the training machines you will find an enthought python compiler preinstalled with all neceassary dependencies:
-```sh
-/opt/epd73/bin/python
-/opt/epd73/bin/ipython
-```
 
 #### Training machine
 pid-training.eudat-sara.vm.surfsara.nl
 
-The epicclient.py can be fount in */opt/PIDs/* on the training machine.
-
 #### Own laptop
-In case you are working on your own laptop with your own python, please install:
-
-```sh
-easy_install httplib2
-easy_install simplejson
-easy_install lxml
-easy_install defusedxml
-```
+In case you are working on your own laptop with your own python, please install the B2HANDLE library.
 
 ## Managing PIDs 
 How do repositories create PIDs for data objects?
@@ -260,7 +238,7 @@ For now we directly worked with the raw functions. The epicclient can also be us
 You can list all options for the CLI on the commandline with:
 
 ```sh 
-/opt/epd73/bin/python epicclient22.py os /opt/PIDs/credentials -h
+/opt/epd73/bin/python epicclient2.py os /opt/PIDs/credentials -h
 ```
 
 The functions are adjusted to the functionality in the EUDAT B2SAFE service, but can serve as reference implementation for other use cases.
