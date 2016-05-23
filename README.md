@@ -39,4 +39,7 @@ The client VM also provides the necessary python libraries to work with the *epi
 ### Site admins - Training
 Site admins will be guided through all steps to setup the environment, covering iRODS installation and federation, setting up B2SAFE, deploying a gridFTP endpoint and pointing it to the iRODS server via the data staging interface.
 
+### Persistent identifiers (PIDs)
+In the tutorial we will explain how to create, update and delete PIDs. The infrastructure to manage PIDs is provided by SURFsara. 
+Note that all instances (B2SAFE, user modules) will make use of the same PID prefix. 
 
