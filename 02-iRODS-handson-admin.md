@@ -15,8 +15,8 @@ rmuser      | delete a user
 mkgroup     | create group
 
 ## iRODS resources
-In iRODS you can create so-called resources which correspond to different physical locations such as resource servers and storage devices. 
-There are two types of of resources, **coordinating** and **storage** resources. By combining them you can create large decision trees with storage resources as leaves and coordinating resources to decide where the data should go to. 
+In iRODS you can create so-called resources which correspond to different physical locations such as resource servers and storage devices.
+There are two types of of resources, **coordinating** and **storage** resources. By combining them you can create large decision trees with storage resources as leaves and coordinating resources to decide where the data should go to.
 
 Recall that with *ilsresc* you can list all existing resources in your iRODS zone.
 Let's create a new resource in your home directory. To this end we create a new directory called *newVault* and declare it as a new storage resource.
@@ -28,7 +28,7 @@ Since iRODS is executed not as your local user but as *irods*, putting data into
 
 ```sh
 iput -R newResc put2.txt
-ERROR: putUtil: put error for /alicetestZone/home/alice/put2.txt, 
+ERROR: putUtil: put error for /alicetestZone/home/alice/put2.txt,
  status = -520013 status = -520013 UNIX_FILE_MKDIR_ERR, Permission denied
 ```
 
@@ -37,8 +37,8 @@ Usually resources are created directly under */var/lib/irods*.
 
 ### Composable resource trees
 
-We will now create a resource tree in which data will bereplicated automatically between two resource. 
-When you are working on our training machines please create the resources in your home directory and set the read and write access for the *irods* user. If you are working on your own machine you can create the resources directly under */var/lib/irods*.
+We will now create a resource tree in which data will bereplicated automatically between two resource.
+When you are working on our training machines, please create the resources in your home directory and set the read and write access for the *irods* user. If you are working on your own machine you can create the resources directly under */var/lib/irods*.
 
 **Create two unix file system resources**
 ```sh
@@ -50,7 +50,7 @@ iadmin mkresc storage2 unixfilesystem <fully qualified hostname>:/var/lib/irods/
 ```sh
 iadmin mkresc replResc replication
 ```
-The keyword *replication* triggers the behaviour of this ccordinating resource. It will replicate all data ingested to the attached resources.
+The keyword *replication* triggers the behaviour of this cordinating resource. It will replicate all data ingested to the attached resources.
 
 **Connect the resources**
 ```sh
@@ -63,6 +63,9 @@ We can inspect the resource tree and put data
 ilsresc
 iput -R replResc put2.txt
 ```
+[//]: # "Questions that I have: works replication both ways? Thus, if I"
+[//]: # "When I put something in storage2, will it end up in storage1"
+[//]: # "as well."
 When we inspect where *put2.txt* ended up we find that it is replicated between *storage1* and *storage2*
 
 ```sh
@@ -73,6 +76,7 @@ ils -L put2.txt
         generic    /var/lib/irods/iRODS/storage1/home/alice/put2.txt
 ```
 
+[//]: # "Are table headers missing?"
 []()  | []()
 ------|------
 mkresource  | create a resource
