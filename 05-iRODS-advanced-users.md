@@ -3,7 +3,6 @@ This part of the tutorial will show how you can work with resources, automate da
 This part of the tutorial assumes that you either followed the tuorial [part 02 - for admins](https://github.com/EUDAT-Training/B2SAFE-B2STAGE-Training/blob/master/02-iRODS-handson-admin.md)
 or that an irodsadmin has created several resources on the iRODS instance you are working on.
 
-[//]: # "Can or must?"
 All commands can be executed as *irods user* from the user interface machine.
 
 ## Data and data resources
@@ -15,7 +14,7 @@ ilsresc
 ```
 we can check which other resources are available. E.g.
 
-```
+```sh
 demoResc
 globalResc
 newResc
@@ -54,7 +53,6 @@ itrim -n 1 put1.txt
 
 **Exercise** How can you reduce the number of replicas to 1?
 
-[//]: # "Headers are missing. Is this correct?"
 []()  | []()
 ------|------
 irepl   | Replicate data to a resource

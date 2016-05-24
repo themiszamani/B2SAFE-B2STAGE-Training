@@ -58,13 +58,7 @@ COMMIT
 adduser irodsadmin
 ```
 ### (Optional)
-To change the user name (useful when working with VM templates)
-[//]: # "I think you want to be able to distinguish between irodsadmin"
-[//]: # "users on different machines and not change the irodsadmin user"
-[//]: # "on all machines... If so, then why not create alice and bob from"
-[//]: # "the start?"
-[//]: # "Also, if I do not do this, will section 9. Login to iRODS still"
-[//]: # "work?"
+To change the linux username (useful when working with VM templates and creatign several users)
 ```sh
 usermod -l alice irodsadmin
 groupmod -n alice irodsadmin

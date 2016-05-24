@@ -8,18 +8,15 @@ Two iRODS 4.1 zones.
 ### Creating remote zones and users
 Assume we have two iRODS servers *aliceZone* with *alice* as iRODS admin and *bobZone* with *bob* as iRODS admin.
 - We need to create remote zones on the respective machines, i.e. on *aliceZone* we need to create a remote zone for *bobZone* and vice versa. On *aliceZone* do
-[//]: # "I presume that the full hostname or ipaddress is that of alice."
-[//]: # "I would make that a bit more clear here."
 ```sh
-iadmin mkzone bobZone remote <full hostname or ipadress>:1247
+iadmin mkzone bobZone remote <full hostname or ipadress of alice>:1247
 ```
 Note that you cannot rename *bobZone*, the remote zone name needs to be exactly the same zone name as on the iRODS server you would like to federate with. On *bobZone* do
 ```sh
-iadmin mkzone aliceZone remote <full hostname or ipadress>:1247
+iadmin mkzone aliceZone remote <full hostname or ipadress of bob>:1247
 ```
 
-[//]: # "rodsuser is not yet explained."
-- Next we need to grant access to *alice* on *bobZone* as **rodsuser**
+- Next we need to grant access to *alice* on *bobZone* as **rodsuser** 
 ```sh
 iadmin mkuser alice#aliceZone rodsuser
 ```
@@ -81,17 +78,17 @@ Open the hosts_config.json and enter on *aliceZone* the addresses of your local 
 {
             "address_type" : "remote",
             "addresses" : [
-                   {"address" : "145.100.58.24"}, #ip address
-                   {"address" : "iRODS4-bob.eudat-sara.vm.surfsara.nl"}, #full server name
-                   {"address" : "irods4.bob"} #hostname
+                   {"address" : "bob.sip.adddr.ess"}, #ip address
+                   {"address" : "<fully qualified hostname>"}, #full server name
+                   {"address" : "<localhost>"} #hostname
              ]
         },
         {
             "address_type" : "local",
             "addresses" : [
-                   {"address" : "145.100.58.12"},
-                   {"address" : "iRODS4-alice.eudat-sara.vm.surfsara.nl"},
-                   {"address" : "iRODS4.alice"}
+                   {"address" : "ali.cei.pad.ress"},
+                   {"address" : "<fully qualified hostname>"},
+                   {"address" : "<localhost>"}
              ]
         }
 ]
