@@ -39,7 +39,7 @@ iadmin mkresc newResc unixfilesystem <fully qualified hostname>:/home/alice/newV
 ```
 Since iRODS is executed not as your local user but as *irods*, putting data into the resource located in your home directpry will fail:
 
-```sh
+```
 iput -R newResc put2.txt
 ERROR: putUtil: put error for /alicetestZone/home/alice/put2.txt,
  status = -520013 status = -520013 UNIX_FILE_MKDIR_ERR, Permission denied
