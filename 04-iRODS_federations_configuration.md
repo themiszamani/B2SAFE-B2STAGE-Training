@@ -51,6 +51,7 @@ ERROR: rcObjStat of /aliceZone failed status = -913000 REMOTE_SERVER_SID_NOT_DEF
         "zone_key": "alice_zone_key",
         "negotiation_key": "TEMPORARY_32byte_negotiation_key"
     }
+],
 ```
 
 - You will find all required information in the server_config.json on *aliceZone*.
