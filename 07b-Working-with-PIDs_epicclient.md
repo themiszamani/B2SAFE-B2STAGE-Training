@@ -109,7 +109,7 @@ On the test machines you can find such a file in */opt/PIDs*.
 
 - Parse credentials (username, password)
 ```py
-cred = Credentials('os', '/<PATH>/credentials')
+cred = Credentials('os', '/<PATH>/cred_file.json')
 cred.parse()
 ```
 - Retrieve some information about the server, this server also hosts the resolver which we will use later
@@ -119,7 +119,7 @@ print('PID server ' + ec.cred.baseuri)
 ```
 - The PID prefix is your user name which is coupled to an administratory domain
 ```py
-print('PID prefix' + ec.cred.prefix)
+print('PID prefix ' + ec.cred.prefix)
 ```
 
 ## Registering a file
