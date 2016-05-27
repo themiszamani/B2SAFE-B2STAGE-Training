@@ -36,6 +36,12 @@ sudo vi /opt/eudat/b2safe/packaging/install.conf
 source /etc/irods/service_account.config
 sudo su - $IRODS_SERVICE_ACCOUNT_NAME -s "/bin/bash" -c "cd /opt/eudat/b2safe/packaging/ ; ./install.sh"
 ```
+For a testing server you might want to set *AUTHZ_ENABLED* and *MSIFREE_ENABLED* to false.
+If you do not want to add the trusted CA of the epic server to your trusted CAs you need to edit the B2SAFE-core/cmd/epicclient.py before running the *install.sh*:
+
+```py
+self.http = httplib2.Http(disable_ssl_certificate_validation=True)
+```
 
 ### 3. Python dependencies
 - Check dependencies
@@ -62,7 +68,7 @@ sudo apt-get install python-simplejson
 ```
 
 ### 4. Tests
-- B2SAFE installation
+#### B2SAFE installation
 ```sh
 cd ~/B2SAFE-core/rules
 irule -vF eudatGetV.r
@@ -72,7 +78,13 @@ irule -vF eudatGetV.r
 *version = 3.1-0
 ```
 
-- Generating PIDs
+####Generating PIDs
+* Test the epicclient.py:
+```sh
+sudo su - irods
+/opt/eudat/b2safe/cmd/epicclient.py os /opt/eudat/b2safe/conf/credentials create www.test.com
+```
+
 * Create a test collection
 ```sh
 mkdir testData
