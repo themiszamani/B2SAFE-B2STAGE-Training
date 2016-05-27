@@ -229,7 +229,7 @@ We can fetch the first data with a certain checksum:
 ```py
 args = dict([('CHECKSUM', str(''.join(md5sum)))])
 Handle = ec.search_handle(**args)
-url = ec.getValueFromHandle(Handle, 'URL')
+url = ec.get_value_from_handle(Handle, 'URL')
 print(url) 
 ```
 
