@@ -5,6 +5,7 @@ This lecture illustrates the use of PIDs, more specifically it shows how to empl
 If you are not working on one of our test machines you need to install the B2HANDLE library and apply for a prefix. For instructions please follow the documentation:
 
 https://github.com/EUDAT-B2SAFE/B2HANDLE/blob/master/README.md
+
 http://eudat-b2safe.github.io/B2HANDLE/handleclient.html#authentication
 
 ## Warming-up: Using PIDs
