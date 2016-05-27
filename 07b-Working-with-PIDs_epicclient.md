@@ -40,7 +40,7 @@ You will also need test credentials for the epic server. On the user interface, 
 
 Please download the epicclient.py.
 ```sh
-wget https://raw.githubusercontent.com/EUDAT-B2SAFE/B2SAFE-core/master/cmd/epicclient.py
+wget https://raw.githubusercontent.com/EUDAT-Training/B2SAFE-B2STAGE-Training/develop/code/epicclient.py
 ```
 
 #### Install python dependencies
