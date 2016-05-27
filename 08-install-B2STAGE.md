@@ -153,6 +153,8 @@ mkdir -p ~/iRODS_DSI/deploy
 cd ~/iRODS_DSI
 wget ftp://ftp.renci.org/pub/irods/releases/4.1.6/ubuntu14/irods-dev-4.1.6-ubuntu14-x86_64.deb
 sudo dpkg -i irods-dev-4.1.6-ubuntu14-x86_64.deb
+wget ftp://ftp.renci.org/pub/irods/releases/4.1.6/ubuntu14/irods-runtime-4.1.6-ubuntu14-x86_64.deb
+sudo dpkg -i irods-runtime-4.1.6-ubuntu14-x86_64.deb
 sudo apt-get update
 ```
 
