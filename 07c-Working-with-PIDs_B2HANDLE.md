@@ -234,11 +234,11 @@ print(url)
 ```
 
 ### Using the epicclient Command Line Interface (CLI)
-For now we directly worked with the raw functions. The epicclient can also be used as CLI. 
+For now we directly worked with the library. EUDAT provides an [epicclient](https://github.com/EUDAT-B2SAFE/B2SAFE-core/blob/master/cmd/epicclient2.py) which can be used as command line interface (CLI) based on the B2HANDLE. 
 You can list all options for the CLI on the commandline with:
 
 ```sh 
-/opt/epd73/bin/python epicclient2.py os /opt/PIDs/credentials -h
+python epicclient2.py os <full path>/cred_file.json -h
 ```
 
 The functions are adjusted to the functionality in the EUDAT B2SAFE service, but can serve as reference implementation for other use cases.
