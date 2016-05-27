@@ -123,6 +123,7 @@ PID_SERVER=https://epic3.storage.surfsara.nl/v2_test/handles/841 #be carefull no
 PID_SUFFIX=XXXX #the suffix of the first created handle
 PID2_SUFFIX=YYYY #the suffix of the second handle
 ```
+You can find the the username and password on the user interface machine in *credentials/cred_epic/cred_file.json*.
 
  - Get the list of handles in 841 prefix as an example. 
 ```py
