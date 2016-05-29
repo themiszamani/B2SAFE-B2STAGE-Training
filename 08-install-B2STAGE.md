@@ -88,9 +88,9 @@ ln -s /var/lib/globus/simple_ca/globus-user-ssl.conf  globus-user-ssl.conf
 
 Request a host certificate and sign it:
 ```sh
-grid-cert-request -host iRODS4-alicetest.eudat-sara.vm.surfsara.nl -force
+grid-cert-request -host <fully.qualified.hostname> -force
 ```
-Make sure you call the host the same way as users would call it from outside to transfer data, i.e. the fully qualified path.
+Make sure *<fully.qualified.hostname>* matches how to call the server from outside to transfer data.
 If you use a different hostname, users will have to add the mapping from IP to the hostname in their */etc/hosts* on their client machine.
 
 Sign the certificate, check it and restart the gridFTP server
@@ -101,9 +101,10 @@ openssl x509 -in /etc/grid-security/hostcert.pem -text -noout
 ```
 
 ## Creating user certificates and editing the gridmap file
-User need to have an own user certificate in order to transfer data to the gridFTP endpoint. This is how you create and sign a user certificate.
+Users need to have an own user certificate in order to transfer data to the gridFTP endpoint. This is how you create and sign a user certificate.
+As root create a user certificate:
 ```sh
-grid-cert-request -force
+grid-cert-request 
 grid-ca-sign -in /root/.globus/usercert_request.pem -out /root/.globus/usercert.pem
 ```
 Send the *usercert.pem* and the *userkey.pem* to the user. The user should store these two documents in */home/user/.globus/*.
@@ -116,7 +117,7 @@ grid-mapfile-add-entry -dn "/O=Grid/OU=GlobusTest/OU=simpleCA-irods4.alicetest/O
 The flag *-ln* specifies a user on your linux system.
 
 ## Testing the gridFTP endpoint
-Switch to a user (*alice*) on your gridFTP server and copy the user certificate and key to the /home/alice/.globus directory
+Switch to a user on your gridFTP server and copy the user certificate and key to the */home/<user>/.globus* directory
 ```sh
 mkdir .globus
 cd .globus
