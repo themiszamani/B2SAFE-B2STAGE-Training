@@ -244,7 +244,7 @@ grid-proxy-init
 List data in the user's iRODS home collection:
 - Listing
 ```sh
-alice@irods4:~$ globus-url-copy -list gsiftp://irods4-alicetest.eudat-sara.vm.surfsara.nl/alicetestZone/home/alice/
+alice@irods4:~$ globus-url-copy -list gsiftp://alice.eudat-sara.vm.surfsara.nl/aliceZone/home/alice/
 ```
 
 The output should look like this:
