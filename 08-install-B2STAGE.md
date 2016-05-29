@@ -76,7 +76,10 @@ grid-ca-create
 ```
 Follow the prompt.
 
-Create symlinks in your working directory:
+Create symlinks in */etc/grid-security*:
+```sh
+cd /etc/grid-security
+```
 ```sh
 ln -s /var/lib/globus/simple_ca/grid-security.conf grid-security.conf
 ln -s /var/lib/globus/simple_ca/globus-host-ssl.conf  globus-host-ssl.conf
