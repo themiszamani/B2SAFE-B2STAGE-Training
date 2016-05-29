@@ -115,7 +115,7 @@ These are the main parameters we are going to use in our examples. For more para
 To connect to the epic server you need to provide a prefix and a password. 
 If you use the example files, this information is stored in a *config.txt* file  and should look like this:
 
-```
+```sh
 USERNAME=841
 PASSWORD=xxxx
 FILENAME=surveys.csv #the file (and its location) we are going to use in the examples
@@ -153,7 +153,7 @@ https://epic3.storage.surfsara.nl/v2_test/handles/841/
 
 First prepare the data in a json format to register. 
 
-```py
+```
 '[{"type":"URL","parsed_data":"https://ndownloader.figshare.com/files/2292172"}]'
 ```
 
@@ -161,7 +161,7 @@ We are going to create a new PID by using the PUT request
 
 So the request method is -X PUT followed by the actual json data 
 
-```py
+```
 -X PUT --data '[{"type":"URL","parsed_data":"https://ndownloader.figshare.com/files/2292172"}]'
 ```
 
@@ -169,7 +169,7 @@ So the request method is -X PUT followed by the actual json data
 
 - Create a universally unique identifier (uuid)
 - Take function for this from
-```py
+```sh
 SUFFIX=`uuidgen`
 ```
 
@@ -180,14 +180,14 @@ We now have an opaque string which is unique to our resolver (841/$SUFFIX ) sinc
 the prefix is unique (handed out by administrators of the resolver).
 
 The URL in the CURL request: 
-```py
+```
 https://epic3.storage.surfsara.nl/v2_test/handles/841/$SUFFIX 
 ```
 
 - Register the PID, link the PID and the data object. We would like the PID to point to the location we stored in *fileLocation*
 (example1.sh)
 
-```py
+```sh
 #!/bin/bash    
 
 SUFFIX=`uuidgen`
@@ -226,7 +226,7 @@ We can retrieve the data object itself via the web-browser.
 
 Dont forget to change the UUD1 to the correct suffix value.
 
-```py
+```sh
 curl -v -u "YOURUSERNAME:YOURPASSWORD" -H "Accept:application/json" \
 		-H "Content-Type:application/json" \
 		-X PUT --data '[{"type":"URL","parsed_data":"https://ndownloader.figshare.com/files/2292172"}]'\
@@ -257,12 +257,15 @@ curl -v -u "YOURUSERNAME:YOURPASSWORD" -H "Accept:application/json" \
 
 Use example3.sh
 
+[//]: # "Not sure: do you mean 'to store identity information of the file'"
+[//]: # "perhaps? In the sentence below."
 - We want to store information on identity of the file, e.g. the md5 checksum. We first have 
 to generate the checksum. However, we can only create checksums for files which we 
 have access to with our python compiler. In the step above we can download the file and
 then continue to calculate the checksum. **NOTE** the filename might depend on the download method.
 
-```#!/bin/bash
+```sh
+#!/bin/bash
 md5value=` md5 surveys.csv | awk '{ print $4 }'`
 curl -v -u "YOURUSERNAME:YOURPASSWORD" -H "Accept:application/json" \
 		-H "Content-Type:application/json" \
@@ -281,7 +284,7 @@ Use example4.sh
 The epic API extends the handle API with recursive look-ups. Assume you just know some of the metadata stored with a PID but not the full PID. How can you get to the URL field to retrieve the data?
 
 We can fetch the first data with a certain checksum:
-```py
+```sh
 curl -v -u "YOURUSERNAME:YOURPASSWORD" -H "Accept:application/json" \
 		-H "Content-Type:application/json" \
 		-X GET \
@@ -298,7 +301,7 @@ Use example5.sh
 ### Updating PID entries
 - Assume location of file has changed. This means we need to modify the URL field.
 
-```py
+```sh
 curl -v -u "YOURUSERNAME:YOURPASSWORD" -H "Accept:application/json" \
 		-H "Content-Type:application/json" \
 		-X POST --data '[{"type":"URL","parsed_data":"/<PATH>/surveys.csv"}]'\
@@ -329,7 +332,7 @@ in the PIDs.
 
 - Reregister the figshare file
 - First create a new PID
-```py
+```sh
 #!/bin/bash    
 
 SUFFIX=`uuidgen`
@@ -347,7 +350,7 @@ First update the json
 	[{"type":"URL","parsed_data":"/<PATH>/surveys.csv"},{"type":"SAME_AS","parsed_data":"841/newhandle"}]
 ```
 
-```py
+```sh
 curl -v -u "YOURUSERNAME:YOURPASSWORD" -H "Accept:application/json" \
 		-H "Content-Type:application/json" \
 		-X POST --data '[{"type":"URL","parsed_data":"/<PATH>/surveys.csv",},{"type":"SAME_AS","parsed_data":"841/newhandle"}]'\
