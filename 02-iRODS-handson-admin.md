@@ -76,15 +76,13 @@ iadmin addchildtoresc replResc storage1
 iadmin addchildtoresc replResc storage2
 ```
 
-We can inspect the resource tree and put data
+We can inspect the resource tree and put data. Usually data is put into the coordinating resource, i.e. *replResc*.
+From there the data replicated to the two leaves, *storage1* and *storage2*. 
+
 ```sh
 ilsresc
 iput -R replResc put2.txt
 ```
-[//]: # "Questions that I have: works replication both ways? Thus, if I"
-[//]: # "When I put something in storage2, will it end up in storage1"
-[//]: # "as well."
-When we inspect where *put2.txt* ended up we find that it is replicated between *storage1* and *storage2*
 
 ```sh
 ils -L put2.txt

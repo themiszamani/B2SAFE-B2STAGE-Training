@@ -39,7 +39,7 @@ sudo apt-get install iptables-persistent
 -A INPUT -j DROP
 COMMIT
 ```
-- edit /etc/iptables/rules.v4
+- edit /etc/iptables/rules.v6
 ```sh
 *filter
 :INPUT ACCEPT [0:0]
@@ -50,7 +50,7 @@ COMMIT
 ```
 
 ```sh
-/etc/init.d/iptables-persistent start
+/etc/init.d/iptables-persistent restart
 ```
 
 ### 3. Create admin user for machine and irods
@@ -58,13 +58,7 @@ COMMIT
 adduser irodsadmin
 ```
 ### (Optional)
-To change the user name (useful when working with VM templates)
-[//]: # "I think you want to be able to distinguish between irodsadmin"
-[//]: # "users on different machines and not change the irodsadmin user"
-[//]: # "on all machines... If so, then why not create alice and bob from"
-[//]: # "the start?"
-[//]: # "Also, if I do not do this, will section 9. Login to iRODS still"
-[//]: # "work?"
+To change the linux username (useful when working with VM templates and creatign several users)
 ```sh
 usermod -l alice irodsadmin
 groupmod -n alice irodsadmin
@@ -131,9 +125,9 @@ sudo /var/lib/irods/packaging/setup_irods.sh
 ```
 
 ```sh
-iRODS servers zone name [tempZone]: alicetestZone
+iRODS servers zone name [tempZone]: aliceZone
 iRODS Vault directory [/var/lib/irods/iRODS/Vault]: /irodsVault
-iRODS servers zone_key [TEMPORARY_zone_key]: alicetest_zone_key
+iRODS servers zone_key [TEMPORARY_zone_key]: ALICE_zone_key
 iRODS servers administrator username [rods]: alice
 Database servers hostname or IP address: localhost
 ```
@@ -148,9 +142,24 @@ iinit
 Enter the host name (DNS) of the server to connect to: localhost
 Enter the port number: 1247
 Enter your irods user name: alice
-Enter your irods zone: alicetestZone
+Enter your irods zone: aliceZone
 ```
 - Test whether you can list your iRODS directory
 ```sh
 ils
 ```
+
+### Additional Server configuration
+iRODS creates a lot of log files, which are not cleaned up automatically. To do so start a cron-job:
+```
+sudo vim /etc/cron.d/irods
+```
+Add
+```
+# cleanup old logfiles older than 14 days
+11      1       *       *       *       root    find /var/lib/irods/iRODS/server/log/{re,rods}Log.* -mtime +14  -exec rm {} \;
+```
+to the file. 
+Now root will delete all reLog and rodsLog files that are older than 14 days. The command will be executed everyday at 11.01am.
+
+

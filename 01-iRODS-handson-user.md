@@ -7,7 +7,7 @@ To this end we will make use of the icommands.
 - icommands client, [Installation](http://irods.org/download/)
 
 ## Outline
-The tutorial will guide you through the workflow as indicated in the figure below. This part is about **Step 1** ingesting data and administering data in iRODS via the icommands. You will have the role as an iRODS user.
+The whole tutorial will guide you through the workflow indicated in the figure below. This part is about **Step 1** ingesting data and administering data in iRODS via the icommands. You will have the role as an iRODS user.
 All commands shown in this part are either icommands or shell commands.
 
 <img align="center" src="img/workflow.png" width="400px">
@@ -60,7 +60,7 @@ NOTICE: created irodsCwd=/aliceZone/home/irods
 
 **Some useful commands for session management**
 
-[]()  | []()
+[]()  | []() 
 ------|------
 iinit       | Log on
 iexit       | Log off
@@ -72,11 +72,10 @@ ierror      | Information on error code
 
 To see which physical resources are attached to the iRODS instance and what their logical names are, you can use:
 ```sh
-ilsresc –l
+ilsresc –l 
 ```
 which will yield:
 ```
-[//]: # "Below type is highlighted in the rendered text. Removed the sh interpretation"
 resource name: demoResc
 id: 9101
 zone: aliceZone
@@ -211,8 +210,8 @@ irmtrash
 ```
 This is called a hard delete. Now the file is removed from the system and from the iCAT catalogue.
 
-[//]: # "The below table is not formatted as a table on my screen."
 **Object/collection manipulation**
+
 []()        | []()
 ------------|------
 iput        | Upload
