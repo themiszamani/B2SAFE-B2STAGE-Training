@@ -258,6 +258,40 @@ gsiftp://irods4-alicetest.eudat-sara.vm.surfsara.nl/alicetestZone/home/alice/
     testData/
 ```
 
+### Debug information
+When you are using a grid certificate mapping to a linux user that is called differently than the default irods user in */root/.irods/irods_environment* or */var/lib/irods/.irods/irods_environment.json* you will encounter ther following error:
+
+```
+530-Login incorrect. : /home/ubuntu/iRODS_DSI/B2STAGE-GridFTP/DSI/globus_gridftp_server_iRODS.c:globus_l_gfs_iRODS_make_error:579:
+530-iRODS DSI. Error: 'clientLogin' failed.. CAT_INVALID_AUTHENTICATION: , status: -826000.
+530-
+530 End.
+```
+
+One solution is to to create an irods admin with the same user name as the linux account the certificate is mapped to and update the *irods_environment* files.
+I.e. if your grid certificate is mapped to *admin*, but your iRODS user is *alice*, do:
+- Create an iRODS account *admin*
+```
+iadmin mkuser admin rodsadmin
+iadmin moduser admin password ***
+```
+- Update the */root/.irods/irods_environment*:
+```
+{
+    "irods_port": 1247,
+    "irods_host": "localhost",
+    "irods_user_name": "admin",
+    "irods_zone_name": "aliceZone"
+}
+```
+- Update the */var/lib/irods/.irods/irods_environment.json*:
+```
+    "irods_home": "/aliceZone/home/admin",
+    "irods_cwd": "/aliceZone/home/admin",
+    "irods_user_name": "admin",
+```
+
+
 
 
 
