@@ -60,6 +60,8 @@ List the irods home collection of the user *alice*
 ```sh
 globus-url-copy -vb -list gsiftp://irods4-alicetest.eudat-sara.vm.surfsara.nl/alicetestZone/home/alice/
 ```
+[//]: # "The '''/<zone_name>/<collection>/<collection>/``` part below"
+[//]: # "does not show in the redendered result. It show '''////``` instead."
 Since this GridFTP server is integrated with iRODS, the url to list consists of '''/<zone_name>/<collection>/<collection>/```. Where the collection part is the logical path inside the iRODS zone.
 Note, that you cannot use gridFTP any longer to list, add and fetch data from the normal file system on the iRODS server any longer in this setting.
 
@@ -70,7 +72,7 @@ Single files can be uploaded to iRODS via:
 ```sh
 globus-url-copy -dbg file:/home/alice/test.txt gsiftp://irods4-alicetest.eudat-sara.vm.surfsara.nl/alicetestZone/home/alice/
 ```
-This will add *test.txt* to te iRODS collection *alice*. To rename the file in iRODS you can extend the iRODS path pointing to the collection with a filename.
+This will add *test.txt* to the iRODS collection *alice*. To rename the file in iRODS you can extend the iRODS path pointing to the collection with a filename.
 
 **Exercise: Data collections**
 
@@ -127,3 +129,7 @@ ON($objPath like "/aliceZone/home/irods<x>/*") {
 }
 ```
 More information on the iRODS microservices: https://docs.irods.org/master/doxygen/
+
+[//]: # "I feel this last bit goes a bit too quickly. All we get here are"
+[//]: # "pointers. To me it feels an example is missing, I might be wrong"
+[//]: # "of course..."
