@@ -63,7 +63,7 @@ globus-url-copy -vb -ipv6 -list gsiftp://<fqhn_or_ip>/aliceZone/home/alice/
 ```
 [//]: # "The '''/<zone_name>/<collection>/<collection>/``` part below"
 [//]: # "does not show in the redendered result. It show '''////``` instead."
-Since this GridFTP server is integrated with iRODS, the url to list consists of */zone_name/home/alice/collection/collection/*. Where the collection part is the logical path of the iRODS zone.
+Since this GridFTP server is integrated with iRODS, the url to list consists of */zone_name/home/alice/collection/*. Where the collection part is the logical path of the iRODS zone.
 **Note**, that you cannot use gridFTP any longer to list, add and fetch data from the normal file system on the iRODS server in this setting. Also note, that all data will be ingested under the user *alice*.
 
 
