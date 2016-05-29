@@ -62,26 +62,26 @@ easy_install uuid-runtime
 
 Final check
 
-```py
+```sh
 curl --help
 ```
 
 If you write the code described below in a file, don't forget to change the permissions. 
 You should make each file executable. 
 
-Suppose you have a file `filename.sh` 
+Suppose you have a file called `filename.sh` 
 
-you can make it by doing as:
+you can make it executable by doing:
 `chmod +x filename.sh`
 
-so it will execute when you type
+so it will execute when you type:
 `./filename.sh`
 
 
 #### Example workflow
 
-1. Obtain a prefix from an resolver admin
-2. Set up internet connection to the PID server with a client
+1. Obtain a prefix from a resolver admin
+2. Set up an internet connection to the PID server with a client
 3. Create a PID
 4. Link PID and location of the data object
 
@@ -103,7 +103,7 @@ Before we start, lets explain the main parameters of CURL used as options
 
  * **-X, --request <command>**: (HTTP) Specifies a custom request method to use when communicating with the HTTP server. The specified request method will be used instead of the method otherwise used (which defaults to GET).  Common additional HTTP requests include PUT ,POST and DELETE . ( -X GET) 
  * **-U, --proxy-user <user:password>**: Specify the user name and password to use for proxy authentication. (ex: -u "username:pass) 
- * **-H, --header <header>**: Extra header to include in the request when sending HTTP to a server. You may specify any number of extra headers.(ex: -H "Accept: application/json" so as to accept json data)
+ * **-H, --header <header>**: Extra header to include in the request when sending HTTP to a server. You may specify any number of extra headers. (ex: -H "Accept: application/json" so as to accept json data)
  * **-d, --data <data>**: (HTTP) Sends the specified data in a POST or PUT request to the HTTP server, in the same way that a browser does when a user has filled in an HTML form and presses the submit button. 
  * **-D, --dump-header <file>**: Write the protocol headers to the specified file.
  * **-v**: get verbosed information about the connection with the server 
@@ -115,7 +115,7 @@ These are the main parameters we are going to use in our examples. For more para
 To connect to the epic server you need to provide a prefix and a password. 
 If you use the example files, this information is stored in a *config.txt* file  and should look like this:
 
-```py
+```
 USERNAME=841
 PASSWORD=xxxx
 FILENAME=surveys.csv #the file (and its location) we are going to use in the examples
@@ -125,25 +125,25 @@ PID2_SUFFIX=YYYY #the suffix of the second handle
 ```
 
  - Get the list of handles in 841 prefix as an example. 
-```py
+```sh
 curl -u "841:XXX" -H "Accept: application/json" \
 	 -H "Content-Type: application/json" \
 	 https://epic3.storage.surfsara.nl/v2_test/handles/841/
 ```
 
 - Connect with your credentials (username, password)
-```py
+```
 -u "841:XXX"
 ```
 - Use the correct headers to send and accept json format 
 
-```py
+```
 -H "Accept: application/json" -H "Content-Type: application/json"
 ```
 
 - The PID prefix is combined with the pid server url  
 
-```py
+```
 https://epic3.storage.surfsara.nl/v2_test/handles/841/
 ```
 
