@@ -72,7 +72,7 @@ import os, shutil
 ```
 ### Connect to the SURFsara handle server 
 To connect to the epic server you need to provide a prefix, the private key and the certificate; alternatively the library also provides authentication with username/password. This information is stored in a json file *credentials* and should look like this:
-```sh
+```json
 {
     "handle_server_url": "https://epic3.storage.surfsara.nl:8001",
     "private_key": "/<full path>/credentials/355_841_privkey.pem",
@@ -96,7 +96,7 @@ print('PID prefix ' + cred.get_prefix())
 print('Server ' + cred.get_server_URL())
 ```
 
-- Create an instance of the client by oassing your credentials:
+- Create an instance of the client by passing your credentials:
 ```py
 ec = EUDATHandleClient.instantiate_with_credentials(cred)
 ```
