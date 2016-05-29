@@ -48,8 +48,8 @@ COMMIT
 ```sh
 /etc/init.d/iptables-persistent restart
 ```
-
-To ensure the mapping from IP to hostname you might have to:
+ 
+ To ensure the mapping from IP to hostname you might have to edit the */etc/hosts*:
 ```sh
 hostname
 echo "your.ip.num.ber <yourhostname>" >> /etc/hosts
