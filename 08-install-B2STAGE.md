@@ -90,7 +90,7 @@ ln -s /var/lib/globus/simple_ca/globus-user-ssl.conf  globus-user-ssl.conf
 ```sh
 grid-cert-request -host <fully.qualified.hostname> -force
 ```
- Make sure *\<fully.qualified.hostname\>* matches how to call the server from outside to transfer data.
+ Make sure *\<fully.qualified.hostname\>* matches the way how to call the server from outside to transfer data.
  If you use a different hostname, users will have to add the mapping from IP to the hostname in their */etc/hosts* on their client machine.
 
  Sign the certificate, check it and restart the gridFTP server
