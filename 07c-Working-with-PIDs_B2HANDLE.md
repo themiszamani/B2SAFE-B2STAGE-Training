@@ -243,3 +243,11 @@ python epicclient2.py os <full path>/cred_file.json -h
 ```
 
 The functions are adjusted to the functionality in the EUDAT B2SAFE service, but can serve as reference implementation for other use cases.
+
+### Quick Links to github Documentation 
+
+ - [Instantiate Client](http://eudat-b2safe.github.io/B2HANDLE/handleclient.html#instantiation)
+ - [Authentication](http://eudat-b2safe.github.io/B2HANDLE/handleclient.html#authentication)
+  - [Authentication using client certificates](http://eudat-b2safe.github.io/B2HANDLE/handleclient.html#authentication-using-client-certificates)
+  - [Authentication using username and password](http://eudat-b2safe.github.io/B2HANDLE/handleclient.html#authentication-using-username-and-password)
+ - [Basic Handle interaction](http://eudat-b2safe.github.io/B2HANDLE/handleclient.html#basic-handle-interaction)
