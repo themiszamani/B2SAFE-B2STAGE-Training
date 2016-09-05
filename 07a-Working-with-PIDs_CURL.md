@@ -207,7 +207,7 @@ HANDLE = 846/UUID1
  - HTTP/1.1 204 No-Content: The local name already exists , and instead of creating a new one you’ve just updated the values of an existing one.
  - HTTP/1.1 401 Unauthorized: Your username or your password is wrong
  - HTTP/1.1 405 Method Not Allowed: 
- 	- You are trying to create a new handle in the main url of the server either (https://epic.grnet.gr/handles/11239/) or (https://epic.grnet.gr/handles). You have not specified a unique name for your handle. (or)
+ 	- You are trying to create a new handle in the main url of the server. You have not specified a unique name for your handle. (or)
 	- You are trying to create a new handle with manual generation of suffix name via POST instead of PUT. POST supports automatic generation of suffix name.
  - HTTP/1.1 415 Unsupported Media Type: You haven’t specify the correct headers for your request. The service supports Json representation so you must define the content-type of the request.
 
